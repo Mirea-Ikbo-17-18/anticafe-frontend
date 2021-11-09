@@ -1,5 +1,5 @@
 {
-  "name": "anticafe",
+  "name": "anticafe-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

@@ -1,0 +1,70 @@
+.container {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 68px 68px 32px;
+  background: rgba(0, 0, 0, 0.55);
+  width: 100vw;
+  top: 0;
+  transition: top 0.3s;
+}
+
+.title-container {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  column-gap: 14px;
+}
+
+.logo,
+.phone-image {
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border-radius: 26px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 40px;
+  box-sizing: border-box;
+}
+
+.entry {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  column-gap: 4px;
+}
+
+.entry:not(.phone) {
+  cursor: pointer;
+}
+
+.text {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #fff;
+}
+
+.login-container {
+  cursor: pointer;
+}

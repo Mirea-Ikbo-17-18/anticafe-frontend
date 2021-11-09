@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/Anticafe'),
+      dir: require('path').join(__dirname, './coverage/anticafe-frontend'),
       subdir: '.',
       reporters: [
         { type: 'html' },
