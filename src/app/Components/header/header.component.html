@@ -1,0 +1,27 @@
+<div class="container" [style.top]="isVisible === true ? '0' : '-160px'">
+  <div class="title-container">
+    <img src="/assets/images/RTU_logo.png" class="logo" />
+    <div class="title">IKBO17</div>
+  </div>
+  <div class="nav-container">
+    <div class="entry" (click)="goToBlock('landing')">
+      <div class="text">Главная</div>
+    </div>
+    <div class="entry" (click)="goToBlock('rooms')">
+      <div class="text">Комнаты</div>
+    </div>
+    <div class="entry" (click)="goToBlock('about')">
+      <div class="text">О нас</div>
+    </div>
+    <div class="entry" (click)="goToBlock('contacts')">
+      <div class="text">Контакты</div>
+    </div>
+    <div class="entry phone">
+      <img src="/assets/images/phone.png" class="phone-image" />
+      <div class="text">88005553535</div>
+    </div>
+  </div>
+  <div class="login-container" (click)="authModal.open()">
+    <div class="text login">Войти/Зарегистрироваться</div>
+  </div>
+</div>
