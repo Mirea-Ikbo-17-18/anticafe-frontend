@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'anticafe-frontend';
+  title = 'Антикафе IKBO17';
 
   constructor() {
     console.log('А шо это вы делаете в моём холодильнике?');

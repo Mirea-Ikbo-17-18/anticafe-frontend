@@ -40,6 +40,21 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: "Sans";
+  src: url("/assets/fonts/Comic Sans MS.ttf");
+}
+
+@font-face {
+  font-family: "DCP";
+  src: url("/assets/fonts/FontOfKindness-Regular.otf");
+}
+
+@font-face {
+  font-family: "Straha:net";
+  src: url("/assets/fonts/straha_net.ttf");
+}
+
 * {
   font-family: "Montserrat";
   padding: 0;
@@ -57,7 +72,7 @@ html {
 }
 
 .section {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .grey-line {
