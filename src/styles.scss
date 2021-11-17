@@ -69,6 +69,7 @@ html::-webkit-scrollbar {
 html {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
+  font-size: 20px;
 }
 
 .section {
@@ -84,6 +85,6 @@ html {
   justify-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 70px;
+  font-size: 3.5rem;
   color: #ffffff;
 }
