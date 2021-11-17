@@ -8,7 +8,7 @@
 @font-face {
   font-family: "Montserrat";
   src: url("/assets/fonts/Montserrat-Bold.ttf");
-  font-weight: bold;
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -22,21 +22,21 @@
 @font-face {
   font-family: "Montserrat";
   src: url("/assets/fonts/Montserrat-BoldItalic.ttf");
-  font-weight: bold;
+  font-weight: 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Montserrat";
   src: url("/assets/fonts/Montserrat-ExtraBold.ttf");
-  font-weight: bolder;
+  font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Montserrat";
   src: url("/assets/fonts/Montserrat-ExtraBoldItalic.ttf");
-  font-weight: bolder;
+  font-weight: 800;
   font-style: italic;
 }
 
@@ -69,7 +69,7 @@ html::-webkit-scrollbar {
 html {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
-  font-size: 20px;
+  font-size: 2.05vmin;
 }
 
 .section {

@@ -36,8 +36,17 @@
   display: inline-block;
 }
 
+.view-rooms-container:hover {
+  opacity: 0.9;
+}
+
+.view-rooms-container:active {
+  opacity: 0.8;
+}
+
 .view-rooms {
   font-weight: 500;
   font-size: 0.825rem;
   color: #000000;
+  cursor: pointer;
 }
