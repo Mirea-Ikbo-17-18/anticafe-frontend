@@ -33,12 +33,60 @@ function decideToResize(): ResizeOption {
   animations: [
     trigger('moveInFrom', [
       transition('void => left', [
-        style({ left: '-{{width}}', 'z-index': 2 }),
-        animate('700ms', style({ left: '0vh' })),
+        style({
+          left: '-{{width}}',
+          'z-index': 3,
+          opacity: 0.1,
+          transform: 'rotateY(45deg)',
+        }),
+        animate(
+          '700ms',
+          style({ left: '0vh', opacity: 1, transform: 'rotateY(0deg)' })
+        ),
       ]),
       transition('void => right', [
-        style({ left: '{{width}}', 'z-index': 2 }),
-        animate('700ms', style({ left: '0vh' })),
+        style({
+          left: '{{width}}',
+          'z-index': 3,
+          opacity: 0.1,
+          transform: 'rotateY(-45deg)',
+        }),
+        animate(
+          '700ms',
+          style({ left: '0vh', opacity: 1, transform: 'rotateY(0deg)' })
+        ),
+      ]),
+      transition('* => leftOut', [
+        style({
+          left: '0vh',
+          'z-index': 2,
+          opacity: 1,
+          transform: 'rotateY(0deg)',
+        }),
+        animate(
+          '700ms',
+          style({
+            left: '-{{width}}',
+            opacity: 0.1,
+            transform: 'rotateY(45deg)',
+          })
+        ),
+      ]),
+      transition('* => rightOut', [
+        style({
+          left: '0vh',
+          'z-index': 2,
+          opacity: 1,
+          transform: 'rotateY(0deg)',
+        }),
+        animate(
+          '700ms',
+          style({
+            left: '{{width}}',
+            opacity: 0.1,
+            transform: 'rotateY(-45deg)',
+          })
+        ),
       ]),
     ]),
   ],
@@ -125,5 +173,13 @@ export class RoomsComponent implements OnInit {
   public shouldBeVisible(pageIndex: number): boolean {
     if (pageIndex === this.pageShown) return true;
     return this.previousPageVisible && this.previousCarouselPage === pageIndex;
+  }
+
+  public getAnimationState(pageIndex: number): string {
+    if (pageIndex === this.pageShown) return this.animationState;
+    if (pageIndex === this.previousCarouselPage)
+      if (this.animationState === 'left') return 'rightOut';
+      else return 'leftOut';
+    return 'stay';
   }
 }

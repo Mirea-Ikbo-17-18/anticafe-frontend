@@ -17,7 +17,7 @@
               i === previousCarouselPage ? 'absolute' : 'relative'
             "
             [@moveInFrom]="{
-              value: animationState,
+              value: getAnimationState(i),
               params: { width: divWidth }
             }"
           >
