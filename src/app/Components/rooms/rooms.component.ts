@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { distinctUntilChanged, map, throttleTime } from 'rxjs/operators';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 
 enum ResizeOption {
   shrink,
@@ -23,14 +30,30 @@ function decideToResize(): ResizeOption {
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss'],
+  animations: [
+    trigger('moveInFrom', [
+      transition('void => left', [
+        style({ left: '-{{width}}', position: 'absolute', 'z-index': 2 }),
+        animate('700ms', style({ left: '0vh' })),
+      ]),
+      transition('void => right', [
+        style({ left: '{{width}}', position: 'absolute', 'z-index': 2 }),
+        animate('700ms', style({ left: '0vh' })),
+      ]),
+    ]),
+  ],
 })
 export class RoomsComponent implements OnInit {
   private baseCircleSize: number = 1.62;
   private minCircleSize: number = 0.8;
   private scrollContainer: HTMLElement | null = null;
+  private previousCarouselPage: number = 0;
+  private previousPageVisible: boolean = false;
 
   public pageShown: number = 0;
   public carouselPages: number[] = [1, 2, 3, 4];
+  public animationState: string = 'stay';
+  public divWidth: string = '';
 
   constructor() {}
 
@@ -53,30 +76,41 @@ export class RoomsComponent implements OnInit {
     }
     if (option === ResizeOption.extend) {
       this.scrollContainer.setAttribute('style', 'width: 154.2vh');
+      this.divWidth = '154.2vh';
     }
     if (option === ResizeOption.shrink) {
       this.scrollContainer.setAttribute('style', 'width: 74.6vh');
-    }
-  }
-
-  public scrollLeft(): void {
-    if (this.pageShown <= 0) {
-      this.pageShown = this.carouselPages.length - 1;
-    } else {
-      this.pageShown--;
-    }
-  }
-
-  public scrollRight(): void {
-    if (this.pageShown >= this.carouselPages.length - 1) {
-      this.pageShown = 0;
-    } else {
-      this.pageShown++;
+      this.divWidth = '74.6vh';
     }
   }
 
   public goToPage(pageIndex: number): void {
-    this.pageShown = pageIndex;
+    if (this.previousPageVisible) return;
+    if (this.pageShown === pageIndex) return;
+    this.previousCarouselPage = this.pageShown;
+    if (pageIndex < 0) {
+      this.pageShown = this.carouselPages.length - 1;
+      this.animationState = 'left';
+    } else if (pageIndex >= this.carouselPages.length) {
+      this.pageShown = 0;
+      this.animationState = 'right';
+    } else {
+      if (pageIndex > this.pageShown) this.animationState = 'right';
+      else if (pageIndex < this.pageShown) this.animationState = 'left';
+      this.pageShown = pageIndex;
+    }
+    this.previousPageVisible = true;
+    setTimeout(() => {
+      this.previousPageVisible = false;
+    }, 700);
+  }
+
+  public scrollLeft(): void {
+    this.goToPage(this.pageShown - 1);
+  }
+
+  public scrollRight(): void {
+    this.goToPage(this.pageShown + 1);
   }
 
   public getCircleSize(index: number): string {
@@ -86,5 +120,10 @@ export class RoomsComponent implements OnInit {
         this.minCircleSize
       ).toString() + 'vh'
     );
+  }
+
+  public shouldBeVisible(pageIndex: number): boolean {
+    if (pageIndex === this.pageShown) return true;
+    return this.previousPageVisible && this.previousCarouselPage === pageIndex;
   }
 }

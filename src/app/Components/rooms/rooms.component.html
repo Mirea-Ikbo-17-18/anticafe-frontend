@@ -10,7 +10,14 @@
       />
       <div class="carousel-container" id="carousel-container">
         <ng-container *ngFor="let carouselPage of carouselPages; let i = index">
-          <div class="carousel-page" *ngIf="i === pageShown">
+          <div
+            class="carousel-page"
+            *ngIf="shouldBeVisible(i)"
+            [@moveInFrom]="{
+              value: animationState,
+              params: { width: divWidth }
+            }"
+          >
             <app-room [asd]="i"></app-room>
             <app-room></app-room>
             <app-room></app-room>
