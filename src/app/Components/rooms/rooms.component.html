@@ -13,6 +13,9 @@
           <div
             class="carousel-page"
             *ngIf="shouldBeVisible(i)"
+            [style.position]="
+              i === previousCarouselPage ? 'absolute' : 'relative'
+            "
             [@moveInFrom]="{
               value: animationState,
               params: { width: divWidth }

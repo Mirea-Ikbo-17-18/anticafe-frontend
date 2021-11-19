@@ -33,11 +33,11 @@ function decideToResize(): ResizeOption {
   animations: [
     trigger('moveInFrom', [
       transition('void => left', [
-        style({ left: '-{{width}}', position: 'absolute', 'z-index': 2 }),
+        style({ left: '-{{width}}', 'z-index': 2 }),
         animate('700ms', style({ left: '0vh' })),
       ]),
       transition('void => right', [
-        style({ left: '{{width}}', position: 'absolute', 'z-index': 2 }),
+        style({ left: '{{width}}', 'z-index': 2 }),
         animate('700ms', style({ left: '0vh' })),
       ]),
     ]),
@@ -47,9 +47,9 @@ export class RoomsComponent implements OnInit {
   private baseCircleSize: number = 1.62;
   private minCircleSize: number = 0.8;
   private scrollContainer: HTMLElement | null = null;
-  private previousCarouselPage: number = 0;
   private previousPageVisible: boolean = false;
 
+  public previousCarouselPage: number = -5;
   public pageShown: number = 0;
   public carouselPages: number[] = [1, 2, 3, 4];
   public animationState: string = 'stay';
