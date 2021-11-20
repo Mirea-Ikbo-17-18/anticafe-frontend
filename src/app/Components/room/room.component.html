@@ -1,18 +1,17 @@
 <div class="container">
   <div class="inner-container">
-    <div class="title">Vice City</div>
-    <img src="assets/images/room-pics/room-sample.png" class="image" />
-    <div class="work-time">09:00-21:00</div>
+    <div class="title">{{ room.name }}</div>
+    <img src="assets/images/room-pics/{{ room.id }}.png" class="image" />
+    <div class="work-time">{{ room.start }}:00-{{ room.finish }}:00</div>
     <div class="description text">
-      Представь себя крутейшим боссом GTA, устраивай вечеринки, трать деньги и
-      весело танцуй, но помни, полиция и мафия не дремлет даже сейчас!
+      {{ room.description }}
     </div>
     <div class="options-header text">Тут есть:</div>
     <ul class="options">
-      <li class="option text">Проектор с большим экраном</li>
-      <li class="option text">Караоке</li>
-      <li class="option text">Крутая мультимедиа</li>
+      <li class="option text" *ngFor="let option of room.options">
+        {{ option.name }}
+      </li>
     </ul>
   </div>
-  <button class="book-button">Цена от {{ asd }}₽</button>
+  <button class="book-button">Цена от {{ room.cost }}₽</button>
 </div>

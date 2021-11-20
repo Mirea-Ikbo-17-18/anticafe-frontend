@@ -21,10 +21,10 @@
               params: { width: divWidth }
             }"
           >
-            <app-room [asd]="i"></app-room>
-            <app-room></app-room>
-            <app-room></app-room>
-            <app-room></app-room>
+            <app-room
+              *ngFor="let room of carouselPage"
+              [room]="room"
+            ></app-room>
           </div>
         </ng-container>
       </div>

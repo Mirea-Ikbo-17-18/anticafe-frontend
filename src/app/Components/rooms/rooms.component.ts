@@ -8,6 +8,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { Room } from '../../Interfaces/room';
 
 enum ResizeOption {
   shrink,
@@ -99,11 +100,35 @@ export class RoomsComponent implements OnInit {
 
   public previousCarouselPage: number = -5;
   public pageShown: number = 0;
-  public carouselPages: number[] = [1, 2, 3, 4];
+  public carouselPages: Array<Room[]> = [];
   public animationState: string = 'stay';
   public divWidth: string = '';
 
-  constructor() {}
+  constructor() {
+    let rooms: Room[] = [];
+    for (let index = 0; index < 20; index++) {
+      rooms.push({
+        id: index,
+        name: 'Vice City',
+        description:
+          'Представь себя крутейшим боссом GTA, устраивай вечеринки, трать деньги и весело танцуй, но помни, полиция и мафия не дремлет даже сейчас!',
+        cost: 3500,
+        start: 9,
+        finish: 21,
+        options: [
+          {
+            id: 0,
+            cost: 0,
+            name: 'Проектор с большим экраном',
+            description: '',
+          },
+          { id: 1, cost: 0, name: 'Караоке', description: '' },
+          { id: 2, cost: 0, name: 'Крутая мультимедиа', description: '' },
+        ],
+      });
+    }
+    this.splitRoomsToPages(rooms);
+  }
 
   ngOnInit(): void {
     this.scrollContainer = document.getElementById('carousel-container');
@@ -116,6 +141,21 @@ export class RoomsComponent implements OnInit {
       )
       .subscribe();
     this.resizePage(decideToResize());
+  }
+
+  private splitRoomsToPages(rooms: Room[]): void {
+    this.carouselPages = [];
+    let counter: number = 0;
+    let tmp: Room[] = [];
+    rooms.forEach((room) => {
+      tmp.push(room);
+      counter++;
+      if (counter >= 4) {
+        this.carouselPages.push(tmp);
+        tmp = [];
+        counter = 0;
+      }
+    });
   }
 
   public resizePage(option: ResizeOption): void {

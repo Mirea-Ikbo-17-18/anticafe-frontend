@@ -1,8 +1,11 @@
+import { Option } from './option';
+
 export interface Room {
   id: number;
-  cost: number;
-  description: string;
   name: string;
+  description: string;
+  cost: number;
   start: number;
   finish: number;
+  options: Option[];
 }
