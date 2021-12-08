@@ -119,5 +119,9 @@
       </div>
     </div>
   </div>
-  <div class="background" (click)="data.close()"></div>
+  <div
+    class="background"
+    (click)="data.close()"
+    [@background]="data.loginAnimationState"
+  ></div>
 </div>

@@ -39,6 +39,20 @@ import {
         animate('360ms 0s ease-out', style({ left: '-50%' })),
       ]),
     ]),
+    trigger('background', [
+      transition('* => apear', [
+        style({
+          opacity: '0',
+        }),
+        animate('350ms 0s ease-out', style({ opacity: '0.5' })),
+      ]),
+      transition('* => leave', [
+        style({
+          opacity: '0.5',
+        }),
+        animate('360ms 0s ease-out', style({ opacity: '0' })),
+      ]),
+    ]),
   ],
 })
 export class AuthModalComponent implements OnInit {

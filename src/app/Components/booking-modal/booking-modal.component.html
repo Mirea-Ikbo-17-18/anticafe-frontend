@@ -33,5 +33,9 @@
     </div>
     <button class="book-button">{{ data.room.cost }}₽</button>
   </div>
-  <div class="background" (click)="data.close()"></div>
+  <div
+    class="background"
+    (click)="data.close()"
+    [@background]="data.animationState"
+  ></div>
 </div>
