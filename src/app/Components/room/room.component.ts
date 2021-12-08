@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Room } from '../../Interfaces/room';
+import { BookingModalService } from '../../Shared/booking-modal.service';
 
 @Component({
   selector: 'app-room',
@@ -17,7 +18,12 @@ export class RoomComponent implements OnInit {
     finish: 21,
     options: [],
   };
-  constructor() {}
+
+  constructor(private bookingModal: BookingModalService) {}
 
   ngOnInit(): void {}
+
+  public open(): void {
+    this.bookingModal.open(this.room);
+  }
 }
