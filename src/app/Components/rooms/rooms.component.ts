@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { distinctUntilChanged, map, throttleTime } from 'rxjs/operators';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
+import { trigger, style, animate, transition } from '@angular/animations';
 import { Room } from '../../Interfaces/room';
 
 enum ResizeOption {
