@@ -7,6 +7,7 @@ import {
   HttpParams,
 } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,15 @@ export class UserService {
 
   public refreshSubscription: number | undefined = undefined;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private cookie: CookieService) {
+    if (this.cookie.check('login') && this.cookie.check('password')) {
+      const email = this.cookie.get('login');
+      const password = this.cookie.get('password');
+      this.login(email, password);
+    } else {
+      this.isAuthorized.next(false);
+    }
+  }
 
   private signIn() {
     let formdata = new FormData();
@@ -60,6 +69,8 @@ export class UserService {
     let result = new Promise<void>((resolve, reject) => {
       this.signIn().subscribe({
         next: (data: { access_token: string }) => {
+          this.cookie.set('login', this.email, 1, '/');
+          this.cookie.set('password', this.password, 1, '/');
           this.token = data.access_token;
           this.isAuthorized.next(true);
           this.startRefreshment();
@@ -77,6 +88,8 @@ export class UserService {
   }
 
   public logout(): void {
+    if (this.cookie.check('login')) this.cookie.delete('login', '/');
+    if (this.cookie.check('password')) this.cookie.delete('password', '/');
     this.token = undefined;
     this.isAuthorized.next(false);
     this.stopRefreshment();
