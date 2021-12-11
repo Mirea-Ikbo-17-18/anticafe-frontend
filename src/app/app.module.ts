@@ -20,6 +20,7 @@ import { RoomComponent } from './Components/room/room.component';
 import { AuthModalComponent } from './Components/auth-modal/auth-modal.component';
 import { TimeSelectorComponent } from './Components/time-selector/time-selector.component';
 import { MessageModalComponent } from './Components/message-modal/message-modal.component';
+import { OptionSelectorComponent } from './Components/option-selector/option-selector.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MessageModalComponent } from './Components/message-modal/message-modal.
     AuthModalComponent,
     TimeSelectorComponent,
     MessageModalComponent,
+    OptionSelectorComponent,
   ],
   imports: [
     BrowserModule,

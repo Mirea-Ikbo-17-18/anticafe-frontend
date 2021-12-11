@@ -112,12 +112,12 @@ export class RoomsComponent implements OnInit {
         options: [
           {
             id: 0,
-            cost: 0,
+            cost: 500,
             name: 'Проектор с большим экраном',
             description: '',
           },
-          { id: 1, cost: 0, name: 'Караоке', description: '' },
-          { id: 2, cost: 0, name: 'Крутая мультимедиа', description: '' },
+          { id: 1, cost: 600, name: 'Караоке', description: '' },
+          { id: 2, cost: 700, name: 'Крутая мультимедиа', description: '' },
         ],
       });
     }

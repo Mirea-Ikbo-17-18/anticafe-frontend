@@ -19,18 +19,33 @@
       <input type="text" class="regular-input" />
     </div>
     <div class="row">
+      <div class="aside-label">Опции</div>
+      <app-option-selector
+        class="option-selector"
+        [options]="data.room.options"
+        [selectedOptions]="data.selectedOptions"
+        (selected)="data.recalculateCost()"
+      ></app-option-selector>
+    </div>
+    <div class="row">
       <div class="aside-label">Дата</div>
       <input
         type="date"
+        [ngModel]="data.date"
+        (ngModelChange)="data.changeDate($event)"
         min="{{ calendarStart }}"
         max="{{ calendarEnd }}"
         class="regular-input"
       />
     </div>
-    <div class="row">
-      <app-time-selector></app-time-selector>
+    <div class="row" *ngIf="data.parsedDate != undefined">
+      <app-time-selector
+        [currentTime]="data.currTime"
+        [timeRange]="data.timeRange"
+        [occupiedTimes]="data.occupiedTimes"
+      ></app-time-selector>
     </div>
-    <button class="book-button">{{ data.room.cost }}₽</button>
+    <button class="book-button">{{ data.cost }}₽</button>
   </div>
   <div
     class="background"

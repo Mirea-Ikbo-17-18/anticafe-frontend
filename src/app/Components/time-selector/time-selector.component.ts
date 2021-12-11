@@ -7,11 +7,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TimeSelectorComponent implements OnInit {
   @Input() timeRange: number[] = [9, 10, 11, 12, 13, 14, 15, 16, 17];
-  @Input() occupiedTimes: number[] = [13, 14];
+  @Input() occupiedTimes: number[] = [];
   @Input() startTime: number | undefined;
   @Output() startTimeChange: EventEmitter<number> = new EventEmitter<number>();
   @Input() endTime: number | undefined;
   @Output() endTimeChange: EventEmitter<number> = new EventEmitter<number>();
+  @Input() currentTime: number | undefined = undefined;
   constructor() {}
 
   ngOnInit(): void {}
@@ -28,6 +29,7 @@ export class TimeSelectorComponent implements OnInit {
   }
 
   public isDisabled(time: number): boolean {
+    if (this.currentTime != undefined && time <= this.currentTime) return true;
     if (this.startTime != undefined && this.startTime > time) return true;
     for (let index = 0; index < this.occupiedTimes.length; index++) {
       let slot: number = this.occupiedTimes[index];
