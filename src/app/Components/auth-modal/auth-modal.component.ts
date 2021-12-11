@@ -7,6 +7,8 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { UserService } from 'src/app/Shared/user-service.service';
+import { MessageModalService } from 'src/app/Shared/message-modal.service';
 
 @Component({
   selector: 'app-auth-modal',
@@ -60,7 +62,11 @@ export class AuthModalComponent implements OnInit {
   public loginPassword: string = '';
   public password: string = '';
   public passwordRepeat: string = '';
-  constructor(public data: AuthModalService) {}
+  constructor(
+    private user: UserService,
+    private message: MessageModalService,
+    public data: AuthModalService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -70,5 +76,37 @@ export class AuthModalComponent implements OnInit {
 
   public registryDisabled(): boolean {
     return this.data.animating;
+  }
+
+  public registry(): void {
+    this.user
+      .registry(this.email, this.password)
+      .then(() => {
+        this.user.login(this.email, this.password).then(() => {
+          this.email = '';
+          this.password = '';
+          this.passwordRepeat = '';
+          this.loginPassword = '';
+          this.data.close();
+        });
+      })
+      .catch(() => {
+        this.message.open('Не удалось создать аккаунт.');
+      });
+  }
+
+  public login(): void {
+    this.user
+      .login(this.email, this.loginPassword)
+      .then(() => {
+        this.email = '';
+        this.password = '';
+        this.passwordRepeat = '';
+        this.loginPassword = '';
+        this.data.close();
+      })
+      .catch(() => {
+        this.message.open('Не удалось войти в аккаунт.');
+      });
   }
 }

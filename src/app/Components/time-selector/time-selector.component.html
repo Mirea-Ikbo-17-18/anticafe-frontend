@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="header">Выберите время</div>
+  <div class="time-container">
+    <button
+      class="time-chip"
+      *ngFor="let time of timeRange"
+      [className]="isSelected(time) ? 'selected-time-chip' : 'time-chip'"
+      (click)="toggle(time)"
+      [disabled]="isDisabled(time)"
+    >
+      {{ time }}:00-{{ time + 1 }}:00
+    </button>
+  </div>
+</div>

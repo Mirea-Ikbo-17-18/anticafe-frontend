@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,8 @@ import { BookingModalComponent } from './Components/booking-modal/booking-modal.
 import { OstComponent } from './Components/ost/ost.component';
 import { RoomComponent } from './Components/room/room.component';
 import { AuthModalComponent } from './Components/auth-modal/auth-modal.component';
+import { TimeSelectorComponent } from './Components/time-selector/time-selector.component';
+import { MessageModalComponent } from './Components/message-modal/message-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +36,15 @@ import { AuthModalComponent } from './Components/auth-modal/auth-modal.component
     OstComponent,
     RoomComponent,
     AuthModalComponent,
+    TimeSelectorComponent,
+    MessageModalComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

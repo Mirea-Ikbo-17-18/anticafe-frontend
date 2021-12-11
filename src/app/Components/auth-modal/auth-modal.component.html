@@ -30,6 +30,7 @@
         <button
           class="green-button"
           [disabled]="email === '' || loginPassword === ''"
+          (click)="login()"
         >
           Войти
         </button>
@@ -104,6 +105,7 @@
           [disabled]="
             email === '' || password === '' || password != passwordRepeat
           "
+          (click)="registry()"
         >
           Создать аккаунт
         </button>

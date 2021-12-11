@@ -7,6 +7,7 @@ import {
   throttleTime,
   distinctUntilChanged,
 } from 'rxjs/operators';
+import { UserService } from 'src/app/Shared/user-service.service';
 import { AuthModalService } from '../../Shared/auth-modal.service';
 
 enum scrollDirection {
@@ -36,7 +37,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private scrollSubscription: Subscription | undefined;
 
   public isVisible = true;
-  constructor(private router: Router, public authModal: AuthModalService) {}
+  public menuVisible: boolean = false;
+  constructor(
+    private router: Router,
+    public authModal: AuthModalService,
+    public user: UserService
+  ) {}
 
   ngOnInit(): void {
     this.scrollSubscription = fromEvent(window, 'scroll')
@@ -64,6 +70,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.router.navigate(['/']);
     }
     document.getElementById(elementId)?.scrollIntoView();
+  }
+
+  public toggleMenu(): void {
+    this.menuVisible = !this.menuVisible;
   }
 
   ngOnDestroy() {
