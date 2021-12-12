@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
+import { UserInfo } from '../Interfaces/userInfo';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +31,10 @@ export class UserService {
     } else {
       this.isAuthorized.next(false);
     }
+  }
+
+  private createTokenHeader(token: string): HttpHeaders {
+    return new HttpHeaders().set('Authorization', 'Bearer ' + token);
   }
 
   private signIn() {
@@ -72,9 +77,8 @@ export class UserService {
           this.cookie.set('login', this.email, 1, '/');
           this.cookie.set('password', this.password, 1, '/');
           this.token = data.access_token;
-          this.isAuthorized.next(true);
           this.startRefreshment();
-          this.getInfo();
+          this.isAuthorized.next(true);
           resolve();
         },
         error: (data: any) => {
@@ -97,7 +101,18 @@ export class UserService {
     this.password = '';
   }
 
-  public getInfo(): void {}
+  public getTokenHeader(): HttpHeaders {
+    if (this.token === undefined) throw new Error('token is not set');
+    return this.createTokenHeader(this.token);
+  }
+
+  public getInfo(): Promise<UserInfo> {
+    return <Promise<UserInfo>>(
+      this.httpClient
+        .get(environment.apiUrl + '/users/', { headers: this.getTokenHeader() })
+        .toPromise()
+    );
+  }
 
   public registry(email: string, password: string): Promise<Object> {
     return this.httpClient
@@ -106,6 +121,20 @@ export class UserService {
         password: password,
         is_admin: false,
       })
+      .toPromise();
+  }
+
+  public saveProfile(userInfo: UserInfo): Promise<Object> {
+    return this.httpClient
+      .patch(
+        environment.apiUrl + '/users/',
+        {
+          first_name: userInfo.first_name,
+          second_name: userInfo.second_name,
+          phone_number: userInfo.phone_number,
+        },
+        { headers: this.getTokenHeader() }
+      )
       .toPromise();
   }
 }

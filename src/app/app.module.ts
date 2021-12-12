@@ -21,6 +21,7 @@ import { AuthModalComponent } from './Components/auth-modal/auth-modal.component
 import { TimeSelectorComponent } from './Components/time-selector/time-selector.component';
 import { MessageModalComponent } from './Components/message-modal/message-modal.component';
 import { OptionSelectorComponent } from './Components/option-selector/option-selector.component';
+import { ChangeProfileModalComponent } from './Components/change-profile-modal/change-profile-modal.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { OptionSelectorComponent } from './Components/option-selector/option-sel
     TimeSelectorComponent,
     MessageModalComponent,
     OptionSelectorComponent,
+    ChangeProfileModalComponent,
   ],
   imports: [
     BrowserModule,

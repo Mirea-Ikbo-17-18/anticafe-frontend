@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { BookingModalService } from '../../Shared/booking-modal.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeProfileModalService } from 'src/app/Shared/change-profile-modal.service';
 import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
-  selector: 'app-booking-modal',
-  templateUrl: './booking-modal.component.html',
-  styleUrls: ['./booking-modal.component.scss'],
+  selector: 'app-change-profile-modal',
+  templateUrl: './change-profile-modal.component.html',
+  styleUrls: ['./change-profile-modal.component.scss'],
   animations: [
     trigger('slide', [
       transition('* => apear', [
@@ -37,20 +37,8 @@ import { trigger, style, animate, transition } from '@angular/animations';
     ]),
   ],
 })
-export class BookingModalComponent implements OnInit {
-  public calendarStart: string = '';
-  public calendarEnd: string = '';
-  constructor(public data: BookingModalService) {}
+export class ChangeProfileModalComponent implements OnInit {
+  constructor(public data: ChangeProfileModalService) {}
 
-  ngOnInit(): void {
-    let date = new Date();
-    console.log(date);
-    this.calendarStart = `${date.getFullYear()}-${
-      date.getMonth() + 1
-    }-${date.getDate()}`;
-    date.setDate(date.getDate() + 14);
-    this.calendarEnd = `${date.getFullYear()}-${
-      date.getMonth() + 1
-    }-${date.getDate()}`;
-  }
+  ngOnInit(): void {}
 }

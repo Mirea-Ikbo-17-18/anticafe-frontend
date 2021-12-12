@@ -8,7 +8,7 @@ import {
   transition,
 } from '@angular/animations';
 import { UserService } from 'src/app/Shared/user-service.service';
-import { MessageModalService } from 'src/app/Shared/message-modal.service';
+import { MessageModal } from 'src/app/Shared/message-modal.service';
 
 @Component({
   selector: 'app-auth-modal',
@@ -64,7 +64,7 @@ export class AuthModalComponent implements OnInit {
   public passwordRepeat: string = '';
   constructor(
     private user: UserService,
-    private message: MessageModalService,
+    private message: MessageModal,
     public data: AuthModalService
   ) {}
 

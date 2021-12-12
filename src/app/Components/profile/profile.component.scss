@@ -1,0 +1,94 @@
+.header-container {
+  position: fixed;
+  z-index: 5;
+}
+
+.top-picture {
+  height: 20.59vh;
+  width: 100%;
+  background-size: 100% 350%;
+  background-image: url("/assets/images/big_room.jpg");
+  opacity: 0.9;
+}
+
+.small-grey-line {
+  height: 0.93vh;
+  width: 100%;
+  background: #010000;
+}
+
+.main-container {
+  height: 78.45vh;
+  width: 100%;
+  display: flex;
+  column-gap: 10.42vw;
+  padding: 2.87vh 7.29vw 5.74vh;
+  box-sizing: border-box;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  align-self: center;
+}
+
+.text {
+  line-height: 1.1rem;
+  margin-bottom: 1.94vh;
+}
+
+.profile-icon {
+  width: 18.52vmin;
+  height: 18.52vmin;
+  margin-bottom: 2.96vh;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.8vh;
+  margin-bottom: 1.48vh;
+}
+
+.info-line {
+  display: flex;
+}
+
+.aside-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.info {
+  font-size: 0.9rem;
+  margin-left: auto;
+}
+
+.green-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  width: 100%;
+  background: #c4c750;
+  font-weight: 600;
+  padding: 1.2vmin 2.96vmin;
+  display: flex;
+  border-radius: 1.2vmin;
+  font-size: 0.9rem;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.green-button:hover {
+  opacity: 0.9;
+}
+
+.green-button:active {
+  opacity: 0.8;
+}

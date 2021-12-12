@@ -1,0 +1,40 @@
+<div
+  class="container"
+  *ngIf="data.isVisible === true && data.userInfo != undefined"
+>
+  <div class="modal" [@slide]="data.animationState">
+    <img
+      src="assets/images/close-icon.svg"
+      alt=""
+      class="close-icon"
+      (click)="data.close()"
+    />
+    <div class="header">Изменение данных</div>
+    <div class="row">
+      <div class="aside-label">Имя</div>
+      <input
+        type="text"
+        class="regular-input"
+        [(ngModel)]="data.userInfo.first_name"
+      />
+    </div>
+    <div class="row">
+      <div class="aside-label">Фамилия</div>
+      <input
+        type="text"
+        class="regular-input"
+        [(ngModel)]="data.userInfo.second_name"
+      />
+    </div>
+    <div class="row">
+      <div class="aside-label">Телефон</div>
+      <input
+        type="text"
+        class="regular-input"
+        [(ngModel)]="data.userInfo.phone_number"
+      />
+    </div>
+    <button class="change-button" (click)="data.save()">Изменить данные</button>
+  </div>
+  <div class="background" [@background]="data.animationState"></div>
+</div>
