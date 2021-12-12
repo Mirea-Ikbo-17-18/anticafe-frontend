@@ -7,16 +7,36 @@
     <div class="header title">{{ data.room.name }}</div>
     <img src="assets/images/room-pics/{{ data.room.id }}.png" class="image" />
     <div class="row">
-      <div class="aside-label">ФИО</div>
-      <input type="text" class="regular-input" />
+      <div class="aside-label">Имя</div>
+      <input
+        type="text"
+        class="regular-input"
+        [(ngModel)]="data.userInfo.first_name"
+      />
+    </div>
+    <div class="row">
+      <div class="aside-label">Фамилия</div>
+      <input
+        type="text"
+        class="regular-input"
+        [(ngModel)]="data.userInfo.second_name"
+      />
     </div>
     <div class="row">
       <div class="aside-label">Телефон</div>
-      <input type="text" class="regular-input" />
+      <input
+        type="text"
+        class="regular-input"
+        [(ngModel)]="data.userInfo.phone_number"
+      />
     </div>
     <div class="row">
       <div class="aside-label">Почта</div>
-      <input type="text" class="regular-input" />
+      <input
+        type="text"
+        class="regular-input"
+        [(ngModel)]="data.userInfo.email"
+      />
     </div>
     <div class="row">
       <div class="aside-label">Опции</div>
@@ -43,9 +63,12 @@
         [currentTime]="data.currTime"
         [timeRange]="data.timeRange"
         [occupiedTimes]="data.occupiedTimes"
+        [(startTime)]="data.startTime"
+        [(endTime)]="data.endTime"
+        (endTimeChange)="data.recalculateCost()"
       ></app-time-selector>
     </div>
-    <button class="book-button">{{ data.cost }}₽</button>
+    <button class="book-button" (click)="data.book()">{{ data.cost }}₽</button>
   </div>
   <div
     class="background"

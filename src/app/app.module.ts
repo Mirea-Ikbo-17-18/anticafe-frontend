@@ -22,6 +22,7 @@ import { TimeSelectorComponent } from './Components/time-selector/time-selector.
 import { MessageModalComponent } from './Components/message-modal/message-modal.component';
 import { OptionSelectorComponent } from './Components/option-selector/option-selector.component';
 import { ChangeProfileModalComponent } from './Components/change-profile-modal/change-profile-modal.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { ChangeProfileModalComponent } from './Components/change-profile-modal/c
     BrowserAnimationsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

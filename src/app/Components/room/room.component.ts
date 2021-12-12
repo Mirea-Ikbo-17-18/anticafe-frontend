@@ -10,6 +10,7 @@ import { BookingModalService } from '../../Shared/booking-modal.service';
 export class RoomComponent implements OnInit {
   @Input() room: Room = {
     id: -1,
+    image_id: -1,
     name: 'Vice City',
     description:
       'Представь себя крутейшим боссом GTA, устраивай вечеринки, трать деньги и весело танцуй, но помни, полиция и мафия не дремлет даже сейчас!',

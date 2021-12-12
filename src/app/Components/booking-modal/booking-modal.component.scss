@@ -1,3 +1,5 @@
+@use "../../../styles";
+
 .container {
   z-index: 100;
   position: fixed;
@@ -8,6 +10,7 @@
 }
 
 .modal {
+  @extend %scrollable;
   max-height: 98vh;
   overflow-y: auto;
   z-index: 101;
