@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="grey-line">Комнаты</div>
+  <div class="carousel">
+    <div class="scroll-area">
+      <img
+        src="assets/images/green_arrow.svg"
+        alt="left"
+        class="arrow"
+        (click)="scrollLeft()"
+      />
+      <div class="carousel-container" id="carousel-container">
+        <ng-container *ngFor="let carouselPage of carouselPages; let i = index">
+          <div
+            class="carousel-page"
+            *ngIf="shouldBeVisible(i)"
+            [style.position]="
+              i === previousCarouselPage ? 'absolute' : 'relative'
+            "
+            [@moveInFrom]="{
+              value: getAnimationState(i),
+              params: { width: divWidth }
+            }"
+          >
+            <app-room
+              *ngFor="let room of carouselPage"
+              [room]="room"
+            ></app-room>
+          </div>
+        </ng-container>
+      </div>
+      <img
+        src="assets/images/green_arrow.svg"
+        alt="left"
+        class="arrow right-arrow"
+        (click)="scrollRight()"
+      />
+    </div>
+    <div class="dots">
+      <div
+        class="dot-container"
+        (click)="goToPage(i)"
+        *ngFor="let _ of carouselPages; let i = index"
+      >
+        <div
+          class="dot"
+          [style.width]="getCircleSize(i)"
+          [style.height]="getCircleSize(i)"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>

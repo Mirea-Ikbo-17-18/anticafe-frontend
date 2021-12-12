@@ -1,0 +1,81 @@
+.container {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.modal {
+  min-width: 20vw;
+  z-index: 101;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 1.5vh;
+  padding: 3.5vh 3.5vh 2.5vh;
+  box-sizing: border-box;
+}
+
+.close-icon {
+  cursor: pointer;
+  width: 2vh;
+  height: 2vh;
+  position: absolute;
+  right: 1vh;
+  top: 1vh;
+}
+
+.header {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5vh;
+}
+
+.button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
+.green-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  width: 60%;
+  background: #c4c750;
+  font-weight: 600;
+  padding: 1.11vh 0;
+  display: flex;
+  border-radius: 3vh;
+  font-size: 1rem;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  font-weight: 600;
+  margin: 1.5vh 0 1vh;
+}
+
+.green-button:hover {
+  opacity: 0.9;
+}
+
+.green-button:active {
+  opacity: 0.8;
+}
+
+.background {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0.5;
+  background: rgba(0, 0, 0);
+}

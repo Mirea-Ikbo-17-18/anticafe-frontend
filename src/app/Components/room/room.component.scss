@@ -1,0 +1,87 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 34.8vh;
+  height: 70.62vh;
+  font-size: 2.05vh;
+}
+
+.inner-container {
+  flex: 10, 10, auto;
+}
+
+.title {
+  align-self: center;
+  font-size: 2.5em;
+  font-weight: 600;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 1.02vh;
+}
+
+.image {
+  align-self: center;
+  width: 97.06%;
+  height: 36.23%;
+  margin-bottom: 1.74vh;
+}
+
+.work-time {
+  align-self: center;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9em;
+  line-height: 1.1em;
+  color: #000000;
+  margin-bottom: 3.07vh;
+}
+
+.text {
+  align-self: flex-start;
+  font-size: 0.8em;
+  line-height: 1.3em;
+  color: #000000;
+}
+
+.description,
+.options {
+  margin-bottom: 1.74vh;
+}
+
+li {
+  list-style-type: none;
+}
+
+.options-header {
+  margin-bottom: 0.7vh;
+}
+
+.book-button {
+  flex: 0, 0, auto;
+  align-self: center;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  background: #c4c750;
+  border-radius: 11.26vh;
+  padding: 2.35vh 0;
+  border: none;
+  outline: none;
+  width: 80%;
+  font-weight: 600;
+  font-size: 0.9em;
+  line-height: 1.1em;
+  color: #000000;
+  cursor: pointer;
+}
+
+.book-button:hover {
+  opacity: 0.9;
+}
+
+.book-button:active {
+  opacity: 0.8;
+}

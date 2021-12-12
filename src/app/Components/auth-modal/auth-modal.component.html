@@ -1,0 +1,129 @@
+<div class="container" *ngIf="data.isVisible === true">
+  <div
+    class="login-modal"
+    [@slide]="data.loginAnimationState"
+    *ngIf="data.loginVisible"
+  >
+    <img
+      src="assets/images/close-icon.svg"
+      alt=""
+      class="close-icon"
+      (click)="data.close()"
+    />
+    <div class="wrapper">
+      <div class="header">Вход в аккаунт</div>
+      <div class="label">Почта</div>
+      <input
+        type="text"
+        class="input"
+        placeholder="example@mail.com"
+        [(ngModel)]="email"
+      />
+      <div class="label">Пароль</div>
+      <input
+        type="password"
+        class="input"
+        placeholder="password"
+        [(ngModel)]="loginPassword"
+      />
+      <div class="button-wrapper">
+        <button
+          class="green-button"
+          [disabled]="email === '' || loginPassword === ''"
+          (click)="login()"
+        >
+          Войти
+        </button>
+      </div>
+      <div class="button-wrapper">
+        <button
+          class="change-modal-button"
+          (click)="data.showRegistry()"
+          [disabled]="data.animating"
+        >
+          Нет аккаунта?
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="registry-modal"
+    [@slide]="data.registryAnimationState"
+    *ngIf="data.registryVisible"
+  >
+    <img
+      src="assets/images/close-icon.svg"
+      alt=""
+      class="close-icon"
+      (click)="data.close()"
+    />
+    <div class="wrapper">
+      <div class="header">Создание аккаунта</div>
+      <div class="label">Почта</div>
+      <input
+        type="text"
+        class="input"
+        placeholder="example@mail.com"
+        [(ngModel)]="email"
+      />
+
+      <div class="label-group">
+        <div class="pass-label">Пароль</div>
+        <div
+          class="mismatch-message"
+          *ngIf="password != passwordRepeat && password != ''"
+        >
+          Пароли не совпадают
+        </div>
+      </div>
+      <input
+        type="password"
+        class="input"
+        placeholder="password"
+        [(ngModel)]="password"
+      />
+
+      <div class="label-group">
+        <div class="pass-label">Повторите пароль</div>
+        <div
+          class="mismatch-message"
+          *ngIf="password != passwordRepeat && passwordRepeat != ''"
+        >
+          Пароли не совпадают
+        </div>
+      </div>
+      <input
+        type="password"
+        class="input"
+        placeholder="password"
+        [(ngModel)]="passwordRepeat"
+      />
+      <div class="button-wrapper">
+        <button
+          class="green-button"
+          [disabled]="
+            email === '' || password === '' || password != passwordRepeat
+          "
+          (click)="registry()"
+        >
+          Создать аккаунт
+        </button>
+      </div>
+      <div class="button-wrapper">
+        <button
+          class="change-modal-button"
+          (click)="data.showLogin()"
+          [disabled]="data.animating"
+        >
+          Уже есть аккаунт?
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="background"
+    (click)="data.close()"
+    [@background]="data.loginAnimationState"
+  ></div>
+</div>

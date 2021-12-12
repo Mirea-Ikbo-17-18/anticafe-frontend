@@ -1,0 +1,52 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-image: url("/assets/images/big_room.jpg");
+  opacity: 1;
+}
+
+.text-container {
+  padding-top: 283px;
+  padding-left: 215px;
+}
+
+.bold-header {
+  font-weight: 800;
+  font-size: 3.7rem;
+  line-height: 4.5rem;
+  color: #ffffff;
+  margin-bottom: 40px;
+}
+
+.header {
+  font-weight: 500;
+  font-size: 3.2rem;
+  line-height: 3.9rem;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.view-rooms-container {
+  cursor: pointer;
+  box-sizing: border-box;
+  background: #c4c750;
+  border-radius: 110px;
+  padding: 23px 36px;
+  display: inline-block;
+}
+
+.view-rooms-container:hover {
+  opacity: 0.9;
+}
+
+.view-rooms-container:active {
+  opacity: 0.8;
+}
+
+.view-rooms {
+  font-weight: 500;
+  font-size: 0.825rem;
+  color: #000000;
+  cursor: pointer;
+}
