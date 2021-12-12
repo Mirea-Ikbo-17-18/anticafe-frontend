@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="body-container" (click)="toggleDropdown()">
+    <div
+      *ngIf="selectedOptions.length === 0; then placeholder; else selected"
+    ></div>
+    <ng-template #placeholder>
+      <div class="placeholder">Выберите опции</div>
+    </ng-template>
+    <ng-template #selected>
+      <div class="selected-options">{{ title }}</div>
+    </ng-template>
+    <img class="arrow-down" src="assets/images/black_arrow_down.svg" />
+  </div>
+  <div class="dropdown-container" *ngIf="dropdownVisible === true">
+    <div
+      class="option-container"
+      *ngFor="let option of options"
+      (click)="toggleOption(option)"
+    >
+      <div
+        class="tick-container"
+        [style.background]="isSelected(option) ? '#c4c750' : '#fff'"
+      >
+        <img src="assets/images/tick.svg" class="tick" />
+      </div>
+      <div class="option-text">{{ option.name }} - {{ option.cost }}₽</div>
+    </div>
+  </div>
+</div>

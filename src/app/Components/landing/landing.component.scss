@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   background-size: cover;
   background-image: url("/assets/images/big_room.jpg");
   opacity: 1;
@@ -13,16 +13,16 @@
 
 .bold-header {
   font-weight: 800;
-  font-size: 74px;
-  line-height: 90px;
+  font-size: 3.7rem;
+  line-height: 4.5rem;
   color: #ffffff;
   margin-bottom: 40px;
 }
 
 .header {
   font-weight: 500;
-  font-size: 64px;
-  line-height: 78px;
+  font-size: 3.2rem;
+  line-height: 3.9rem;
   color: #ffffff;
   margin-bottom: 30px;
 }
@@ -36,8 +36,17 @@
   display: inline-block;
 }
 
+.view-rooms-container:hover {
+  opacity: 0.9;
+}
+
+.view-rooms-container:active {
+  opacity: 0.8;
+}
+
 .view-rooms {
   font-weight: 500;
-  font-size: 16.5px;
+  font-size: 0.825rem;
   color: #000000;
+  cursor: pointer;
 }

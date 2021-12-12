@@ -7,15 +7,142 @@
   right: 0;
 }
 
-.modal {
+.login-modal,
+.registry-modal {
   z-index: 101;
   position: fixed;
-  width: 100px;
-  height: 100px;
-  background: #aaa;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 1.5vh;
+  padding: 3.5vh 3.5vh 2.5vh;
+  box-sizing: border-box;
+}
+
+.login-modal {
+  width: 40vh;
+}
+
+.registry-modal {
+  width: 50vh;
+}
+
+// .container {
+//   position: relative;
+//   background: white;
+//   border-radius: 1.5vh;
+//   padding: 3.5vh 3.5vh 2.5vh;
+//   box-sizing: border-box;
+//   width: 30vh;
+// }
+
+.close-icon {
+  cursor: pointer;
+  width: 2vh;
+  height: 2vh;
+  position: absolute;
+  right: 1vh;
+  top: 1vh;
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2vh;
+}
+
+.label-group {
+  display: flex;
+  margin-bottom: 0.5vh;
+  align-content: flex-end;
+  align-items: flex-end;
+}
+
+.label {
+  font-size: 0.8rem;
+  margin-bottom: 0.5vh;
+}
+
+.mismatch-message {
+  font-size: 0.6rem;
+  color: rgb(202, 38, 38);
+  margin-left: auto;
+}
+
+.pass-label {
+  font-size: 0.8rem;
+}
+
+.input {
+  font-family: "Montserrat";
+  font-size: 1rem;
+  padding: 1vh;
+  border-radius: 1vh;
+  box-sizing: border-box;
+  outline: none;
+  border: 0.1vh solid #dadbdf;
+  background: #eaebef;
+  width: 100%;
+  margin-bottom: 1.5vh;
+}
+
+.input:focus {
+  //   border: 0.1vh solid #c1c2f8;
+  border: 0.1vh solid #c4c750;
+}
+
+.button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
+button {
+  cursor: pointer;
+  display: block;
+  border: none;
+  outline: none;
+}
+
+.green-button {
+  width: 60%;
+  background: #c4c750;
+  font-weight: 600;
+  padding: 1.11vh 0;
+  display: flex;
+  border-radius: 3vh;
+  font-size: 1rem;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  font-weight: 600;
+  margin: 1.5vh 0 1vh;
+}
+
+.green-button:not(:disabled):hover {
+  opacity: 0.9;
+}
+
+.green-button:not(:disabled):active {
+  opacity: 0.8;
+}
+
+.green-button:disabled {
+  background: #969696;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.change-modal-button {
+  text-decoration: underline;
+  background: none;
+}
+
+.change-modal-button:active {
+  opacity: 0.8;
 }
 
 .background {
@@ -25,5 +152,6 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.5);
+  opacity: 0.5;
+  background: rgba(0, 0, 0);
 }

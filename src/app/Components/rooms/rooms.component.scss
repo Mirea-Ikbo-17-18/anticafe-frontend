@@ -1,5 +1,86 @@
-.rooms-container {
+.carousel {
   display: flex;
-  margin: 78px 142px 43px;
-  column-gap: 106px;
+  flex-direction: column;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  justify-content: center;
+  padding: 1.5vh 5vh 3vh;
+  min-height: 86.11vh;
+}
+
+.scroll-area {
+  column-gap: 1.5vh;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+%pressable:hover {
+  opacity: 0.9;
+}
+
+%pressable:active {
+  opacity: 0.8;
+}
+
+.arrow {
+  flex: 0 0 auto;
+  @extend %pressable;
+  width: 4.63vh;
+  height: 4.63vh;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.right-arrow {
+  transform: rotate(180deg);
+}
+
+.carousel-container {
+  display: flex;
+  position: relative;
+}
+
+.carousel-page {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2.5vh;
+  width: 100%;
+  flex: 0 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  gap: 5vh;
+  flex-wrap: wrap;
+}
+
+.dots {
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  column-gap: 1vh;
+  height: 1.62vh;
+}
+
+.dot-container {
+  cursor: pointer;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 2vh;
+  width: 2vh;
+}
+
+.dot {
+  @extend %pressable;
+  border-radius: 1.2vh;
+  background: rgb(196, 199, 80);
+  border: #000;
+  box-sizing: border-box;
+  transition: width 0.5s, height 0.5s;
 }

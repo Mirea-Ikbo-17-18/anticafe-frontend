@@ -1,0 +1,17 @@
+<div class="container" *ngIf="data.isVisible">
+  <div class="modal">
+    <img
+      src="assets/images/close-icon.svg"
+      alt=""
+      class="close-icon"
+      (click)="data.close()"
+    />
+    <div class="wrapper">
+      <div class="header">{{ data.text }}</div>
+      <div class="button-wrapper">
+        <button class="green-button" (click)="data.close()">Ок</button>
+      </div>
+    </div>
+  </div>
+  <div class="background"></div>
+</div>

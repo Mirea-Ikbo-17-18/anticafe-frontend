@@ -8,7 +8,7 @@
 @font-face {
   font-family: "Montserrat";
   src: url("/assets/fonts/Montserrat-Bold.ttf");
-  font-weight: bold;
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -22,22 +22,37 @@
 @font-face {
   font-family: "Montserrat";
   src: url("/assets/fonts/Montserrat-BoldItalic.ttf");
-  font-weight: bold;
+  font-weight: 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Montserrat";
   src: url("/assets/fonts/Montserrat-ExtraBold.ttf");
-  font-weight: bolder;
+  font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Montserrat";
   src: url("/assets/fonts/Montserrat-ExtraBoldItalic.ttf");
-  font-weight: bolder;
+  font-weight: 800;
   font-style: italic;
+}
+
+@font-face {
+  font-family: "Sans";
+  src: url("/assets/fonts/Comic Sans MS.ttf");
+}
+
+@font-face {
+  font-family: "DCP";
+  src: url("/assets/fonts/FontOfKindness-Regular.otf");
+}
+
+@font-face {
+  font-family: "Straha:net";
+  src: url("/assets/fonts/straha_net.ttf");
 }
 
 * {
@@ -54,10 +69,11 @@ html::-webkit-scrollbar {
 html {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
+  font-size: 2.05vmin;
 }
 
 .section {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .grey-line {
@@ -69,6 +85,6 @@ html {
   justify-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 70px;
+  font-size: 3.5rem;
   color: #ffffff;
 }

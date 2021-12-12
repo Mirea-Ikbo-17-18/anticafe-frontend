@@ -1,1 +1,17 @@
-<p>room works!</p>
+<div class="container">
+  <div class="inner-container">
+    <div class="title">{{ room.name }}</div>
+    <img src="assets/images/room-pics/{{ room.id }}.png" class="image" />
+    <div class="work-time">{{ room.start }}:00-{{ room.finish }}:00</div>
+    <div class="description text">
+      {{ room.description }}
+    </div>
+    <div class="options-header text">Тут есть:</div>
+    <ul class="options">
+      <li class="option text" *ngFor="let option of room.options">
+        {{ option.name }}
+      </li>
+    </ul>
+  </div>
+  <button class="book-button" (click)="open()">Цена от {{ room.cost }}₽</button>
+</div>

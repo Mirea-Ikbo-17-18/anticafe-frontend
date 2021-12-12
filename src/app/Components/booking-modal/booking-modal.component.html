@@ -1,1 +1,55 @@
-<p>booking-modal works!</p>
+<div
+  class="container"
+  *ngIf="data.isVisible === true && data.room != undefined"
+>
+  <div class="modal" [@slide]="data.animationState">
+    <div class="header">Бронирование</div>
+    <div class="header title">{{ data.room.name }}</div>
+    <img src="assets/images/room-pics/{{ data.room.id }}.png" class="image" />
+    <div class="row">
+      <div class="aside-label">ФИО</div>
+      <input type="text" class="regular-input" />
+    </div>
+    <div class="row">
+      <div class="aside-label">Телефон</div>
+      <input type="text" class="regular-input" />
+    </div>
+    <div class="row">
+      <div class="aside-label">Почта</div>
+      <input type="text" class="regular-input" />
+    </div>
+    <div class="row">
+      <div class="aside-label">Опции</div>
+      <app-option-selector
+        class="option-selector"
+        [options]="data.room.options"
+        [selectedOptions]="data.selectedOptions"
+        (selected)="data.recalculateCost()"
+      ></app-option-selector>
+    </div>
+    <div class="row">
+      <div class="aside-label">Дата</div>
+      <input
+        type="date"
+        [ngModel]="data.date"
+        (ngModelChange)="data.changeDate($event)"
+        min="{{ calendarStart }}"
+        max="{{ calendarEnd }}"
+        class="regular-input"
+      />
+    </div>
+    <div class="row" *ngIf="data.parsedDate != undefined">
+      <app-time-selector
+        [currentTime]="data.currTime"
+        [timeRange]="data.timeRange"
+        [occupiedTimes]="data.occupiedTimes"
+      ></app-time-selector>
+    </div>
+    <button class="book-button">{{ data.cost }}₽</button>
+  </div>
+  <div
+    class="background"
+    (click)="data.close()"
+    [@background]="data.animationState"
+  ></div>
+</div>
