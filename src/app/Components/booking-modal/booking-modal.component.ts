@@ -53,4 +53,14 @@ export class BookingModalComponent implements OnInit {
       date.getMonth() + 1
     }-${date.getDate()}`;
   }
+
+  validatePhone(phone: string): boolean {
+    return /^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$/im.test(phone);
+  }
+
+  validateEmail(email: string): boolean {
+    return /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
+      email
+    );
+  }
 }

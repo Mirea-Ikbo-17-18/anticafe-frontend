@@ -13,6 +13,7 @@
     <div class="row">
       <div class="aside-label">Имя</div>
       <input
+        maxlength="40"
         type="text"
         class="regular-input"
         [(ngModel)]="data.userInfo.first_name"
@@ -21,6 +22,7 @@
     <div class="row">
       <div class="aside-label">Фамилия</div>
       <input
+        maxlength="40"
         type="text"
         class="regular-input"
         [(ngModel)]="data.userInfo.second_name"
@@ -29,12 +31,33 @@
     <div class="row">
       <div class="aside-label">Телефон</div>
       <input
+        maxlength="11"
         type="text"
         class="regular-input"
         [(ngModel)]="data.userInfo.phone_number"
       />
     </div>
-    <button class="change-button" (click)="data.save()">Изменить данные</button>
+    <div class="row">
+      <div class="aside-label">Пароль</div>
+      <input
+        maxlength="20"
+        type="password"
+        class="regular-input"
+        [(ngModel)]="data.password"
+      />
+    </div>
+    <button
+      class="change-button"
+      (click)="data.save()"
+      [disabled]="
+        !(
+          validatePhone(data.userInfo.phone_number) ||
+          data.userInfo.phone_number === ''
+        )
+      "
+    >
+      Изменить данные
+    </button>
   </div>
   <div class="background" [@background]="data.animationState"></div>
 </div>

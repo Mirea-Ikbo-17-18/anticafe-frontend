@@ -27,6 +27,11 @@
     </div>
     <button class="green-button" (click)="changeData()">Изменить данные</button>
   </div>
-  <div class="reservations-container">asd</div>
+  <div class="reservations-container">
+    <app-reservation-viewer
+      [reservations]="reservations"
+      (deleteReservaton)="deleteReservation($event)"
+    ></app-reservation-viewer>
+  </div>
 </div>
 <app-change-profile-modal></app-change-profile-modal>

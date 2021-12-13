@@ -30,6 +30,7 @@ export class BookingModalService {
     phone_number: '',
     first_name: '',
     second_name: '',
+    is_admin: false,
   };
 
   constructor(
@@ -46,6 +47,12 @@ export class BookingModalService {
     if (this.user.isAuthorized.value === true) {
       this.user.getInfo().then((info: UserInfo) => {
         this.userInfo = info;
+        this.userInfo.first_name =
+          this.userInfo.first_name === null ? '' : this.userInfo.first_name;
+        this.userInfo.second_name =
+          this.userInfo.second_name === null ? '' : this.userInfo.second_name;
+        this.userInfo.phone_number =
+          this.userInfo.phone_number === null ? '' : this.userInfo.phone_number;
       });
     }
     this.timeRange = [];

@@ -109,4 +109,10 @@ export class AuthModalComponent implements OnInit {
         this.message.open('Не удалось войти в аккаунт.');
       });
   }
+
+  validateEmail(email: string): boolean {
+    return /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
+      email
+    );
+  }
 }

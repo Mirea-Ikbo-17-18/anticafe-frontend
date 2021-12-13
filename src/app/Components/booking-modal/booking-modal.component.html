@@ -5,10 +5,14 @@
   <div class="modal" [@slide]="data.animationState">
     <div class="header">Бронирование</div>
     <div class="header title">{{ data.room.name }}</div>
-    <img src="assets/images/room-pics/{{ data.room.id }}.png" class="image" />
+    <img
+      src="assets/images/room-pics/{{ data.room.image_id }}.png"
+      class="image"
+    />
     <div class="row">
       <div class="aside-label">Имя</div>
       <input
+        maxlength="40"
         type="text"
         class="regular-input"
         [(ngModel)]="data.userInfo.first_name"
@@ -17,6 +21,7 @@
     <div class="row">
       <div class="aside-label">Фамилия</div>
       <input
+        maxlength="40"
         type="text"
         class="regular-input"
         [(ngModel)]="data.userInfo.second_name"
@@ -25,14 +30,16 @@
     <div class="row">
       <div class="aside-label">Телефон</div>
       <input
+        maxlength="11"
         type="text"
         class="regular-input"
         [(ngModel)]="data.userInfo.phone_number"
       />
     </div>
     <div class="row">
-      <div class="aside-label">Почта</div>
+      <div class="aside-label">Email</div>
       <input
+        maxlength="40"
         type="text"
         class="regular-input"
         [(ngModel)]="data.userInfo.email"
@@ -68,7 +75,19 @@
         (endTimeChange)="data.recalculateCost()"
       ></app-time-selector>
     </div>
-    <button class="book-button" (click)="data.book()">{{ data.cost }}₽</button>
+    <button
+      class="book-button"
+      (click)="data.book()"
+      [disabled]="
+        !validatePhone(data.userInfo.phone_number) ||
+        !validateEmail(data.userInfo.email) ||
+        data.userInfo.first_name === '' ||
+        data.userInfo.second_name === '' ||
+        data.startTime === undefined
+      "
+    >
+      {{ data.cost }}₽
+    </button>
   </div>
   <div
     class="background"

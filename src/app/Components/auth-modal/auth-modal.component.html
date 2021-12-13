@@ -14,6 +14,7 @@
       <div class="header">Вход в аккаунт</div>
       <div class="label">Почта</div>
       <input
+        maxlength="40"
         type="text"
         class="input"
         placeholder="example@mail.com"
@@ -21,6 +22,7 @@
       />
       <div class="label">Пароль</div>
       <input
+        maxlength="20"
         type="password"
         class="input"
         placeholder="password"
@@ -29,7 +31,7 @@
       <div class="button-wrapper">
         <button
           class="green-button"
-          [disabled]="email === '' || loginPassword === ''"
+          [disabled]="!validateEmail(email) || loginPassword === ''"
           (click)="login()"
         >
           Войти
@@ -62,6 +64,7 @@
       <div class="header">Создание аккаунта</div>
       <div class="label">Почта</div>
       <input
+        maxlength="40"
         type="text"
         class="input"
         placeholder="example@mail.com"
@@ -78,6 +81,7 @@
         </div>
       </div>
       <input
+        maxlength="20"
         type="password"
         class="input"
         placeholder="password"
@@ -94,6 +98,7 @@
         </div>
       </div>
       <input
+        maxlength="20"
         type="password"
         class="input"
         placeholder="password"
@@ -103,7 +108,9 @@
         <button
           class="green-button"
           [disabled]="
-            email === '' || password === '' || password != passwordRepeat
+            !validateEmail(email) ||
+            password === '' ||
+            password != passwordRepeat
           "
           (click)="registry()"
         >

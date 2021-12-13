@@ -67,6 +67,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public goToBlock(elementId: string): void {
     if (this.router.url != '/') {
+      setTimeout(
+        () => document.getElementById(elementId)?.scrollIntoView(),
+        100
+      );
       this.router.navigate(['/']);
     }
     document.getElementById(elementId)?.scrollIntoView();

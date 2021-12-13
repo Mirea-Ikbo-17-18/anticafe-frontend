@@ -37,10 +37,11 @@
 
 .header {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.3rem;
   color: #000000;
   align-self: center;
+  margin-bottom: 3vh;
 }
 .row {
   display: flex;
@@ -90,12 +91,18 @@
   cursor: pointer;
 }
 
-.change-button:hover {
+.change-button:not(:disabled):hover {
   opacity: 0.9;
 }
 
-.change-button:active {
+.change-button:not(:disabled):active {
   opacity: 0.8;
+}
+
+.change-button:disabled {
+  background: #969696;
+  color: #fff;
+  cursor: not-allowed;
 }
 
 .background {

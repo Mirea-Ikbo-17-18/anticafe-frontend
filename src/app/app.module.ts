@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +23,14 @@ import { MessageModalComponent } from './Components/message-modal/message-modal.
 import { OptionSelectorComponent } from './Components/option-selector/option-selector.component';
 import { ChangeProfileModalComponent } from './Components/change-profile-modal/change-profile-modal.component';
 import { DatePipe } from '@angular/common';
+import { AdminPageComponent } from './Components/admin-page/admin-page.component';
+import { AdminLoginComponent } from './Components/admin-login/admin-login.component';
+import { ReservationViewerComponent } from './Components/reservation-viewer/reservation-viewer.component';
+import { ReservationRowComponent } from './Components/reservation-row/reservation-row.component';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+
+registerLocaleData(localeRu, 'ru');
 
 @NgModule({
   declarations: [
@@ -43,6 +51,10 @@ import { DatePipe } from '@angular/common';
     MessageModalComponent,
     OptionSelectorComponent,
     ChangeProfileModalComponent,
+    AdminPageComponent,
+    AdminLoginComponent,
+    ReservationViewerComponent,
+    ReservationRowComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +63,7 @@ import { DatePipe } from '@angular/common';
     BrowserAnimationsModule,
     HttpClientModule,
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, { provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
