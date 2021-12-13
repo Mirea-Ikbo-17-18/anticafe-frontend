@@ -3,6 +3,8 @@ import { fromEvent } from 'rxjs';
 import { distinctUntilChanged, map, throttleTime } from 'rxjs/operators';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { Room } from '../../Interfaces/room';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 enum ResizeOption {
   shrink,
@@ -98,11 +100,12 @@ export class RoomsComponent implements OnInit {
   public animationState: string = 'stay';
   public divWidth: string = '';
 
-  constructor() {
+  constructor(private http: HttpClient) {
     let rooms: Room[] = [];
     for (let index = 0; index < 20; index++) {
       rooms.push({
         id: index,
+        image_id: index,
         name: 'Vice City',
         description:
           'Представь себя крутейшим боссом GTA, устраивай вечеринки, трать деньги и весело танцуй, но помни, полиция и мафия не дремлет даже сейчас!',
@@ -114,10 +117,9 @@ export class RoomsComponent implements OnInit {
             id: 0,
             cost: 500,
             name: 'Проектор с большим экраном',
-            description: '',
           },
-          { id: 1, cost: 600, name: 'Караоке', description: '' },
-          { id: 2, cost: 700, name: 'Крутая мультимедиа', description: '' },
+          { id: 1, cost: 600, name: 'Караоке' },
+          { id: 2, cost: 700, name: 'Крутая мультимедиа' },
         ],
       });
     }
@@ -135,6 +137,7 @@ export class RoomsComponent implements OnInit {
       )
       .subscribe();
     this.resizePage(decideToResize());
+    this.getRooms();
   }
 
   private splitRoomsToPages(rooms: Room[]): void {
@@ -215,5 +218,13 @@ export class RoomsComponent implements OnInit {
       if (this.animationState === 'left') return 'rightOut';
       else return 'leftOut';
     return 'stay';
+  }
+
+  public getRooms(): void {
+    this.http
+      .get<Room[]>(environment.apiUrl + '/rooms/')
+      .subscribe((rooms: Room[]) => {
+        this.splitRoomsToPages(rooms);
+      });
   }
 }

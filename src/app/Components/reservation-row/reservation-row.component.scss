@@ -1,0 +1,99 @@
+.container {
+  box-sizing: border-box;
+}
+
+.head {
+  padding: 2vh;
+  display: grid;
+  grid-template-columns: 0.25fr repeat(3, 1fr) 1.85vh;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.arrow {
+  width: 1.85vh;
+  height: 1.85vh;
+}
+
+.body {
+  overflow-y: hidden;
+  margin: 0 2vh;
+  background: #fff;
+  border-radius: 0 0 1vh 1vh;
+  padding: 1vh;
+}
+
+.info-container {
+  display: flex;
+}
+
+.grid-container {
+  flex: 5 1 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 3vh;
+  border-right: 0.25vh solid #000;
+}
+
+.options-container {
+  padding-left: 0.5vh;
+  flex: 2 1 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 3vh;
+  box-sizing: border-box;
+}
+
+.entry {
+  display: flex;
+}
+
+.body-data {
+  margin-left: 0.5vh;
+}
+
+.body-label,
+.options-header {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.body-data,
+.option {
+  font-size: 0.9rem;
+}
+
+.button-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  justify-items: center;
+  margin: 2vh 0 0 0;
+}
+
+.green-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  width: 30%;
+  background: #c4c750;
+  font-weight: 600;
+  padding: 1.2vmin 2.96vmin;
+  display: flex;
+  border-radius: 1.2vmin;
+  font-size: 0.9rem;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.green-button:hover {
+  opacity: 0.9;
+}
+
+.green-button:active {
+  opacity: 0.8;
+}

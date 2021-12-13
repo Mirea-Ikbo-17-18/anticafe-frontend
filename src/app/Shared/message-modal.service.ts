@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class MessageModalService {
+export class MessageModal {
   public isVisible: boolean = false;
   public text: string = '';
 

@@ -1,1 +1,37 @@
-<p>profile works!</p>
+<div class="header-container">
+  <app-header></app-header>
+</div>
+<div class="top-picture"></div>
+<div class="small-grey-line"></div>
+<div class="main-container">
+  <div class="profile-card">
+    <div class="text center">Ваши данные</div>
+    <img src="assets\images\profile-icon.svg" class="profile-icon center" />
+    <div class="info-container">
+      <div class="info-line">
+        <div class="aside-label">Имя:</div>
+        <div class="info">{{ userInfo.first_name }}</div>
+      </div>
+      <div class="info-line">
+        <div class="aside-label">Фамилия:</div>
+        <div class="info">{{ userInfo.second_name }}</div>
+      </div>
+      <div class="info-line">
+        <div class="aside-label">Email:</div>
+        <div class="info">{{ userInfo.email }}</div>
+      </div>
+      <div class="info-line">
+        <div class="aside-label">Телефон:</div>
+        <div class="info">{{ userInfo.phone_number }}</div>
+      </div>
+    </div>
+    <button class="green-button" (click)="changeData()">Изменить данные</button>
+  </div>
+  <div class="reservations-container">
+    <app-reservation-viewer
+      [reservations]="reservations"
+      (deleteReservaton)="deleteReservation($event)"
+    ></app-reservation-viewer>
+  </div>
+</div>
+<app-change-profile-modal></app-change-profile-modal>

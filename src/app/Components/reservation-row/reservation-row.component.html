@@ -1,0 +1,71 @@
+<div
+  class="container"
+  *ngIf="reservation"
+  [style.background]="index % 2 === 0 ? '#d4d765' : '#c4c750'"
+  [style.padding-bottom]="isExpanded === true ? '2vh' : '0vh'"
+>
+  <div class="head" (click)="toggleExpand()">
+    <div class="head-entry">{{ index }}</div>
+    <div class="head-entry">{{ roomName }}</div>
+    <div class="head-entry">{{ reservation.start | date: "mediumDate" }}</div>
+    <div class="head-entry">{{ reservation.start | date: "HH:00" }}</div>
+    <img
+      src="assets/images/fold.svg"
+      class="arrow"
+      [style.transform]="
+        isExpanded === true ? 'rotate(180deg)' : 'rotate(0deg)'
+      "
+    />
+  </div>
+  <div class="body" *ngIf="isExpanded === true">
+    <div class="info-container">
+      <div class="grid-container">
+        <div class="entry">
+          <div class="body-label">Начало:</div>
+          <div class="body-data">{{ reservation.start | date: "HH:00" }}</div>
+        </div>
+        <div class="entry">
+          <div class="body-label">Конец:</div>
+          <div class="body-data">{{ reservation.finish | date: "HH:00" }}</div>
+        </div>
+        <div class="entry">
+          <div class="body-label">Стоимость:</div>
+          <div class="body-data">{{ reservation.cost }}₽</div>
+        </div>
+        <div class="entry">
+          <div class="body-label">Телефон:</div>
+          <div class="body-data">{{ reservation.phone_number }}</div>
+        </div>
+        <div class="entry">
+          <div class="body-label">Почта:</div>
+          <div class="body-data">{{ reservation.email }}</div>
+        </div>
+        <div class="entry">
+          <div class="body-label">Имя:</div>
+          <div class="body-data">{{ reservation.first_name }}</div>
+        </div>
+        <div class="entry">
+          <div class="body-label">Фамилия:</div>
+          <div class="body-data">{{ reservation.second_name }}</div>
+        </div>
+      </div>
+      <div class="options-container">
+        <div class="options-header">Опции:</div>
+        <div
+          *ngIf="reservation.options.length > 0; then options; else empty"
+        ></div>
+        <ng-template #options>
+          <div class="option" *ngFor="let option of reservation.options">
+            {{ option.name }}
+          </div>
+        </ng-template>
+        <ng-template #empty>
+          <div class="option">Не выбрано</div>
+        </ng-template>
+      </div>
+    </div>
+    <div class="button-wrapper" *ngIf="canDelete === true">
+      <button class="green-button" (click)="delete()">Отменить бронь</button>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 import {
   HttpClient,
   HttpErrorResponse,
@@ -7,14 +8,13 @@ import {
   HttpParams,
 } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { CookieService } from 'ngx-cookie-service';
 import { UserInfo } from '../Interfaces/userInfo';
-import { Reservation } from '../Interfaces/reservation';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class AdminService {
+  public invalidData: boolean = false;
   public email: string = '';
   public password: string = '';
 
@@ -25,15 +25,14 @@ export class UserService {
   public refreshSubscription: number | undefined = undefined;
 
   constructor(private httpClient: HttpClient, private cookie: CookieService) {
-    if (this.cookie.check('login') && this.cookie.check('password')) {
-      const email = this.cookie.get('login');
-      const password = this.cookie.get('password');
+    if (this.cookie.check('adminLogin') && this.cookie.check('adminPassword')) {
+      const email = this.cookie.get('adminLogin');
+      const password = this.cookie.get('adminPassword');
       this.login(email, password);
     } else {
       this.isAuthorized.next(false);
     }
   }
-
   private createTokenHeader(token: string): HttpHeaders {
     return new HttpHeaders().set('Authorization', 'Bearer ' + token);
   }
@@ -75,14 +74,23 @@ export class UserService {
     let result = new Promise<void>((resolve, reject) => {
       this.signIn().subscribe({
         next: (data: { access_token: string }) => {
-          this.cookie.set('login', this.email, 1, '/');
-          this.cookie.set('password', this.password, 1, '/');
           this.token = data.access_token;
-          this.startRefreshment();
-          this.isAuthorized.next(true);
-          resolve();
+          this.isAdmin().then((data: boolean) => {
+            if (data === true) {
+              this.cookie.set('adminLogin', this.email, 1, '/');
+              this.cookie.set('adminPassword', this.password, 1, '/');
+              this.startRefreshment();
+              this.isAuthorized.next(true);
+              resolve();
+            } else {
+              this.invalidData = true;
+              this.logout();
+              reject();
+            }
+          });
         },
         error: (data: any) => {
+          this.invalidData = true;
           this.logout();
           console.error(data);
           reject();
@@ -93,8 +101,9 @@ export class UserService {
   }
 
   public logout(): void {
-    if (this.cookie.check('login')) this.cookie.delete('login', '/');
-    if (this.cookie.check('password')) this.cookie.delete('password', '/');
+    if (this.cookie.check('adminLogin')) this.cookie.delete('adminLogin', '/');
+    if (this.cookie.check('adminPassword'))
+      this.cookie.delete('adminPassword', '/');
     this.token = undefined;
     this.isAuthorized.next(false);
     this.stopRefreshment();
@@ -107,50 +116,28 @@ export class UserService {
     return this.createTokenHeader(this.token);
   }
 
-  public getInfo(): Promise<UserInfo> {
-    return <Promise<UserInfo>>(
+  public isAdmin(): Promise<boolean> {
+    return new Promise<boolean>((resolve) => {
       this.httpClient
-        .get(environment.apiUrl + '/users/', { headers: this.getTokenHeader() })
+        .get<UserInfo>(environment.apiUrl + '/users/', {
+          headers: this.getTokenHeader(),
+        })
         .toPromise()
-    );
+        .then((info: UserInfo) => {
+          resolve(info.is_admin);
+        });
+    });
   }
 
-  public registry(email: string, password: string): Promise<Object> {
-    return this.httpClient
-      .post(environment.apiUrl + '/users/', {
-        email: email,
-        password: password,
-        is_admin: false,
-      })
-      .toPromise();
-  }
-
-  public saveProfile(userInfo: UserInfo, password: string): Promise<Object> {
-    return this.httpClient
-      .patch(
-        environment.apiUrl + '/users/',
-        {
-          first_name: userInfo.first_name,
-          second_name: userInfo.second_name,
-          phone_number: userInfo.phone_number,
-          password: password,
-        },
-        { headers: this.getTokenHeader() }
-      )
-      .toPromise();
-  }
-
-  public getReservations(): Promise<Reservation[]> {
-    return <Promise<Reservation[]>>(<unknown>this.httpClient
-      .get<Reservation[]>(environment.apiUrl + '/reservations/', {
-        headers: this.getTokenHeader(),
-      })
-      .toPromise());
-  }
-
-  public deleteReservations(index: number): void {
+  public initDB() {
     this.httpClient
-      .delete(environment.apiUrl + '/reservations/' + index.toString() + '/')
+      .post(
+        environment.apiUrl + '/admin/init/',
+        {},
+        {
+          headers: this.getTokenHeader(),
+        }
+      )
       .subscribe();
   }
 }

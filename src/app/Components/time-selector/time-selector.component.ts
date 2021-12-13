@@ -9,9 +9,12 @@ export class TimeSelectorComponent implements OnInit {
   @Input() timeRange: number[] = [9, 10, 11, 12, 13, 14, 15, 16, 17];
   @Input() occupiedTimes: number[] = [];
   @Input() startTime: number | undefined;
-  @Output() startTimeChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() startTimeChange: EventEmitter<number | undefined> =
+    new EventEmitter<number | undefined>();
   @Input() endTime: number | undefined;
-  @Output() endTimeChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() endTimeChange: EventEmitter<number | undefined> = new EventEmitter<
+    number | undefined
+  >();
   @Input() currentTime: number | undefined = undefined;
   constructor() {}
 
@@ -44,6 +47,7 @@ export class TimeSelectorComponent implements OnInit {
     if (!this.isDisabled(time)) {
       if (this.startTime === undefined) {
         this.startTime = time;
+        this.endTime = time;
       } else {
         if (this.startTime === time) {
           this.startTime = undefined;
@@ -54,6 +58,8 @@ export class TimeSelectorComponent implements OnInit {
           this.endTime = time;
         }
       }
+      this.startTimeChange.next(this.startTime);
+      this.endTimeChange.next(this.endTime);
     }
   }
 }

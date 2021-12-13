@@ -8,7 +8,7 @@ import {
   transition,
 } from '@angular/animations';
 import { UserService } from 'src/app/Shared/user-service.service';
-import { MessageModalService } from 'src/app/Shared/message-modal.service';
+import { MessageModal } from 'src/app/Shared/message-modal.service';
 
 @Component({
   selector: 'app-auth-modal',
@@ -64,7 +64,7 @@ export class AuthModalComponent implements OnInit {
   public passwordRepeat: string = '';
   constructor(
     private user: UserService,
-    private message: MessageModalService,
+    private message: MessageModal,
     public data: AuthModalService
   ) {}
 
@@ -108,5 +108,11 @@ export class AuthModalComponent implements OnInit {
       .catch(() => {
         this.message.open('Не удалось войти в аккаунт.');
       });
+  }
+
+  validateEmail(email: string): boolean {
+    return /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
+      email
+    );
   }
 }

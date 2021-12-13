@@ -1,10 +1,16 @@
+@use "../../../styles";
+
 .container {
+  @extend %scrollable;
   position: relative;
   display: flex;
   flex-direction: column;
   width: 34.8vh;
-  height: 70.62vh;
+  height: 78.62vh;
   font-size: 2.05vh;
+  overflow-y: auto;
+  padding-bottom: 1vh;
+  box-sizing: border-box;
 }
 
 .inner-container {
@@ -22,8 +28,8 @@
 
 .image {
   align-self: center;
-  width: 97.06%;
-  height: 36.23%;
+  width: 32.78vh;
+  height: 24.5vh;
   margin-bottom: 1.74vh;
 }
 
@@ -58,6 +64,7 @@ li {
 }
 
 .book-button {
+  margin-top: auto;
   flex: 0, 0, auto;
   align-self: center;
   display: flex;
