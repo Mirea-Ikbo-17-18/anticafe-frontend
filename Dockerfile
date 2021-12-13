@@ -12,6 +12,10 @@ RUN npm run build-prod
 
 FROM nginx:latest
 
-COPY --from=build /src/dist/anticafe-frontend /usr/share/nginx/html
+RUN mkdir /app
+
+COPY --from=build /src/dist/anticafe-frontend /app
+
+COPY default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
