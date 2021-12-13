@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingModalService } from '../../Shared/booking-modal.service';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-booking-modal',
@@ -58,5 +52,15 @@ export class BookingModalComponent implements OnInit {
     this.calendarEnd = `${date.getFullYear()}-${
       date.getMonth() + 1
     }-${date.getDate()}`;
+  }
+
+  validatePhone(phone: string): boolean {
+    return /^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$/im.test(phone);
+  }
+
+  validateEmail(email: string): boolean {
+    return /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
+      email
+    );
   }
 }

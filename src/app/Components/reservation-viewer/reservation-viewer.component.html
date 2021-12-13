@@ -1,0 +1,17 @@
+<div class="main-container">
+  <div class="title">
+    <div class="entry">№</div>
+    <div class="entry">Комната</div>
+    <div class="entry">Дата</div>
+    <div class="entry">Время</div>
+  </div>
+  <div class="container">
+    <app-reservation-row
+      *ngFor="let reservation of reservations; let i = index"
+      [reservation]="reservation"
+      [index]="i + 1"
+      [isAdmin]="isAdmin"
+      (deleted)="delete($event)"
+    ></app-reservation-row>
+  </div>
+</div>

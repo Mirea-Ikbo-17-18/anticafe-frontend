@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="form">
+    <div class="header">Вход в панель администратора</div>
+    <label for="email" class="label">Login</label>
+    <input
+      [(ngModel)]="username"
+      type="text"
+      id="email"
+      placeholder="Введите логин"
+      (ngModelChange)="removeError()"
+    />
+    <label for="password" class="label">Пароль</label>
+    <input
+      [(ngModel)]="password"
+      type="password"
+      id="password"
+      placeholder="Введите пароль"
+      (ngModelChange)="removeError()"
+    />
+    <button class="apply-button" (click)="logIn()">Войти</button>
+    <div class="error-messge" *ngIf="user.invalidData">
+      Не удалось авторизоваться
+    </div>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.form {
+  position: relative;
+  width: 29vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #313a5a;
+  box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.075);
+  border-radius: 0.9vh;
+  padding: 4.3vmin;
+}
+
+.header {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 2.6vh;
+  color: #ffffff;
+  margin-bottom: 1.85vh;
+}
+
+label {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.8vh;
+  color: #ffffff;
+  display: inline-block;
+  margin-bottom: 0.62vh;
+}
+
+input {
+  outline: none;
+  border: 0.12vmin solid rgba(255, 255, 255, 0.15);
+  box-sizing: border-box;
+  border-radius: 0.6vh;
+  height: 4.5vmin;
+  width: 100%;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.8vmin;
+  color: #ffffff;
+  background: #313a5a;
+  margin-bottom: 1.85vh;
+  padding: 1.4vh 1vw;
+}
+
+input:focus {
+  border: 0.12vmin solid #ffffff;
+}
+
+.error-messge {
+  font-size: 1rem;
+  margin: 1vmin 0;
+  color: #c72828;
+}
+
+%base-button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  width: 100%;
+  border-radius: 0.6vmin;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #ffffff;
+  height: 4.5vmin;
+}
+
+%base-button:hover:enabled {
+  opacity: 0.95;
+}
+
+%base-button:active:enabled {
+  opacity: 0.9;
+}
+
+%base-button:disabled {
+  cursor: not-allowed;
+  background: #969696;
+  font-weight: normal;
+  color: #fff;
+}
+
+.apply-button {
+  @extend %base-button;
+  background: #1cc677;
+}

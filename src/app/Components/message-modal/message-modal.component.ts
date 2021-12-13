@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageModalService } from 'src/app/Shared/message-modal.service';
+import { MessageModal } from 'src/app/Shared/message-modal.service';
 
 @Component({
   selector: 'app-message-modal',
@@ -7,7 +7,7 @@ import { MessageModalService } from 'src/app/Shared/message-modal.service';
   styleUrls: ['./message-modal.component.scss'],
 })
 export class MessageModalComponent implements OnInit {
-  constructor(public data: MessageModalService) {}
+  constructor(public data: MessageModal) {}
 
   ngOnInit(): void {}
 }
