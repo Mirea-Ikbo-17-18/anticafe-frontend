@@ -128,10 +128,14 @@
         </button>
       </div>
       <div class="redactor-section">
-        <div class="green-button" (click)="initDB()">Инициализировать бд</div>
+        <div class="section-header">Статистика за месяц</div>
+        <div class="green-button" (click)="getStatistics()">
+          Получить статистику
+        </div>
       </div>
       <div class="redactor-section">
-        <div class="green-button">Получить статистику</div>
+        <div class="section-header">Инициализация БД</div>
+        <div class="green-button" (click)="initDB()">Инициализировать бд</div>
       </div>
     </div>
     <div class="reservations-container">

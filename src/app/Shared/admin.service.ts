@@ -231,4 +231,18 @@ export class AdminService {
       })
       .subscribe();
   }
+
+  public getStatistics(): Promise<any> {
+    const options = {
+      headers: this.getTokenHeader(),
+      responseType: 'blob' as 'json',
+    };
+    return <Promise<any>>(
+      (<unknown>(
+        this.httpClient
+          .get(environment.apiUrl + '/admin/statistics/', options)
+          .toPromise()
+      ))
+    );
+  }
 }
