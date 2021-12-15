@@ -199,4 +199,19 @@ export class AdminPageComponent implements OnInit {
       this.addedOptions = [];
     }
   }
+
+  public getStatistics(): void {
+    this.user.getStatistics().then((data: any) => {
+      const blob = new Blob([data], { type: 'text/csv' });
+      let url = window.URL.createObjectURL(blob);
+      let link = document.createElement('a');
+      link.href = url;
+      link.download = 'Statistics.csv';
+      link.click();
+      setTimeout(() => {
+        window.URL.revokeObjectURL(url);
+        link.remove();
+      }, 100);
+    });
+  }
 }
