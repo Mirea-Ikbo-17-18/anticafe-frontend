@@ -133,7 +133,7 @@ export class BookingModalService {
           data.forEach((reservation: Reservation) => {
             let start: number = new Date(reservation.start).getHours();
             let end: number = new Date(reservation.finish).getHours();
-            for (let hour: number = start; hour <= end; hour++)
+            for (let hour: number = start; hour < end; hour++)
               this.occupiedTimes.push(hour);
           });
         });
@@ -158,7 +158,7 @@ export class BookingModalService {
             'yyyy-MM-ddTHH:00:00'
           ),
           finish: this.datePipe.transform(
-            new Date(date.setHours(this.endTime)),
+            new Date(date.setHours(this.endTime + 1, 59, 59)),
             'yyyy-MM-ddTHH:00:00'
           ),
           email: this.userInfo.email,
