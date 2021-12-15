@@ -9,6 +9,11 @@ import {
 } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { UserInfo } from '../Interfaces/userInfo';
+import { Reservation } from '../Interfaces/reservation';
+import { Room } from '../Interfaces/room';
+import { ShortRoom } from '../Interfaces/shortRoom';
+import { Option } from '../Interfaces/option';
+import { SiteInfo } from '../Interfaces/siteInfo';
 
 @Injectable({
   providedIn: 'root',
@@ -138,6 +143,92 @@ export class AdminService {
           headers: this.getTokenHeader(),
         }
       )
+      .subscribe();
+  }
+
+  public getReservations(): Promise<Reservation[]> {
+    return <Promise<Reservation[]>>(<unknown>this.httpClient
+      .get<Reservation[]>(environment.apiUrl + '/reservations/', {
+        headers: this.getTokenHeader(),
+      })
+      .toPromise());
+  }
+
+  public deleteReservations(index: number): void {
+    this.httpClient
+      .delete(environment.apiUrl + '/reservations/' + index.toString() + '/')
+      .subscribe();
+  }
+
+  public getRooms(): Promise<Room[]> {
+    return <Promise<Room[]>>(
+      (<unknown>(
+        this.httpClient.get<Room[]>(environment.apiUrl + '/rooms/').toPromise()
+      ))
+    );
+  }
+
+  public updateRoom(room: ShortRoom, roomId: number): void {
+    this.httpClient
+      .patch(environment.apiUrl + '/rooms/' + roomId.toString(), room, {
+        headers: this.getTokenHeader(),
+      })
+      .subscribe();
+  }
+
+  public getAllOptions(): Promise<Option[]> {
+    return <Promise<Option[]>>(
+      (<unknown>(
+        this.httpClient
+          .get<Option[]>(environment.apiUrl + '/options/')
+          .toPromise()
+      ))
+    );
+  }
+
+  public saveRoomOptions(
+    roomId: number,
+    toDelete: number[],
+    toAdd: number[]
+  ): void {
+    if (toAdd.length > 0)
+      this.httpClient
+        .post(
+          environment.apiUrl + '/rooms/' + roomId.toString() + '/options/',
+          toAdd,
+          {
+            headers: this.getTokenHeader(),
+          }
+        )
+        .subscribe();
+    if (toDelete.length > 0)
+      this.httpClient
+        .request(
+          'DELETE',
+          environment.apiUrl + '/rooms/' + roomId.toString() + '/options/',
+          {
+            body: toDelete,
+            headers: this.getTokenHeader(),
+          }
+        )
+        .subscribe();
+  }
+
+  public getSiteInfo(): Promise<SiteInfo> {
+    return <Promise<SiteInfo>>(
+      (<unknown>(
+        this.httpClient
+          .get<SiteInfo>(environment.apiUrl + '/admin/info/')
+          .toPromise()
+      ))
+    );
+  }
+
+  public updateSiteInfo(siteInfo: SiteInfo): void {
+    this.httpClient
+      .patch(environment.apiUrl + '/admin/info/', siteInfo, {
+        headers: this.getTokenHeader(),
+      })
       .subscribe();
   }
 }

@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="body-container" (click)="toggleDropdown()">
+    <div class="placeholder" *ngIf="selectedOption === undefined">
+      {{ placeholder }}
+    </div>
+    <div class="selected-options" *ngIf="selectedOption != undefined">
+      {{ selectedOption.name }}
+    </div>
+    <img class="arrow-down" src="assets/images/black_arrow_down.svg" />
+  </div>
+  <div class="dropdown-container" *ngIf="dropdownVisible === true">
+    <div
+      class="option-container"
+      *ngFor="let option of options"
+      (click)="toggleOption(option)"
+    >
+      <div
+        class="option-text"
+        [style.font-weight]="selectedOption === option ? '600' : 'normal'"
+      >
+        {{ option.name }}
+      </div>
+    </div>
+  </div>
+</div>

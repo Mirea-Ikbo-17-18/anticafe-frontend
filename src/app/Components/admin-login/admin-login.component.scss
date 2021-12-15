@@ -1,17 +1,21 @@
 .container {
   width: 100vw;
   height: 100vh;
+  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("/assets/images/admin-login-background.jpg");
+  opacity: 1;
 }
 
 .form {
   position: relative;
-  width: 29vw;
+  width: 51vmin;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #313a5a;
   box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.075);
-  border-radius: 0.9vh;
+  border-radius: 0.9vmin;
   padding: 4.3vmin;
 }
 
@@ -21,7 +25,7 @@
   font-size: 1.5rem;
   line-height: 2.6vh;
   color: #ffffff;
-  margin-bottom: 1.85vh;
+  margin-bottom: 1.85vmin;
 }
 
 label {
@@ -31,14 +35,14 @@ label {
   line-height: 1.8vh;
   color: #ffffff;
   display: inline-block;
-  margin-bottom: 0.62vh;
+  margin-bottom: 0.62vmin;
 }
 
 input {
   outline: none;
   border: 0.12vmin solid rgba(255, 255, 255, 0.15);
   box-sizing: border-box;
-  border-radius: 0.6vh;
+  border-radius: 0.6vmin;
   height: 4.5vmin;
   width: 100%;
   font-style: normal;
@@ -47,8 +51,8 @@ input {
   line-height: 1.8vmin;
   color: #ffffff;
   background: #313a5a;
-  margin-bottom: 1.85vh;
-  padding: 1.4vh 1vw;
+  margin-bottom: 1.85vmin;
+  padding: 1.4vmin 2.6vmin;
 }
 
 input:focus {
@@ -61,35 +65,38 @@ input:focus {
   color: #c72828;
 }
 
-%base-button {
-  cursor: pointer;
-  outline: none;
+.green-button {
+  flex: 0, 0, auto;
+  align-self: center;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  background: #c4c750;
+  border-radius: 11.26vmin;
+  padding: 2.35vmin 0;
   border: none;
+  outline: none;
   width: 100%;
-  border-radius: 0.6vmin;
-  font-style: normal;
   font-weight: 600;
-  font-size: 1rem;
-  color: #ffffff;
-  height: 4.5vmin;
+  font-size: 0.9em;
+  line-height: 1.1em;
+  color: #000000;
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
-%base-button:hover:enabled {
-  opacity: 0.95;
-}
-
-%base-button:active:enabled {
+.green-button:not(:disabled):hover {
   opacity: 0.9;
 }
 
-%base-button:disabled {
-  cursor: not-allowed;
-  background: #969696;
-  font-weight: normal;
-  color: #fff;
+.green-button:not(:disabled):active {
+  opacity: 0.8;
 }
 
-.apply-button {
-  @extend %base-button;
-  background: #1cc677;
+.green-button:disabled {
+  background: #969696;
+  color: #fff;
+  cursor: not-allowed;
 }

@@ -22,7 +22,7 @@ export class UserService {
   public isAuthorized: BehaviorSubject<boolean | undefined> =
     new BehaviorSubject<boolean | undefined>(undefined);
 
-  public refreshSubscription: number | undefined = undefined;
+  public refreshSubscription: any | undefined = undefined;
 
   constructor(private httpClient: HttpClient, private cookie: CookieService) {
     if (this.cookie.check('login') && this.cookie.check('password')) {
@@ -50,7 +50,7 @@ export class UserService {
 
   private startRefreshment() {
     this.stopRefreshment();
-    setInterval(() => {
+    this.refreshSubscription = setInterval(() => {
       this.signIn().subscribe({
         next: (data: { access_token: string }) => {
           this.token = data.access_token;
@@ -66,6 +66,7 @@ export class UserService {
   private stopRefreshment() {
     if (this.refreshSubscription != undefined) {
       clearInterval(this.refreshSubscription);
+      this.refreshSubscription = undefined;
     }
   }
 
@@ -96,8 +97,8 @@ export class UserService {
     if (this.cookie.check('login')) this.cookie.delete('login', '/');
     if (this.cookie.check('password')) this.cookie.delete('password', '/');
     this.token = undefined;
-    this.isAuthorized.next(false);
     this.stopRefreshment();
+    this.isAuthorized.next(false);
     this.email = '';
     this.password = '';
   }
