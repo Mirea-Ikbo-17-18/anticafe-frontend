@@ -1,2 +1,145 @@
-<button (click)="logout()">Выйти</button>
-<button (click)="initDB()">Инициализировать бд</button>
+<div class="container">
+  <div class="header">
+    <div class="header-option" routerLink="/">На главную</div>
+    <div class="header-option" (click)="logout()">Выйти</div>
+  </div>
+  <div class="main-container">
+    <div class="redactor-container">
+      <div class="redactor-section">
+        <div class="section-header">Изменение параметров страницы</div>
+        <div class="inputs-container">
+          <div class="section-input">
+            <div class="label">Название</div>
+            <input
+              maxlength="20"
+              type="text"
+              [(ngModel)]="siteInfo.title"
+              placeholder="Anticafe IKBO17"
+            />
+          </div>
+          <div class="section-input">
+            <div class="label">Описание</div>
+            <input
+              maxlength="50"
+              type="text"
+              [(ngModel)]="siteInfo.description"
+              placeholder="Описание"
+            />
+          </div>
+        </div>
+        <button
+          class="green-button"
+          (click)="updateSiteInfo()"
+          [disabled]="
+            siteInfo.title.length === 0 || siteInfo.description.length === 0
+          "
+        >
+          Сохранить
+        </button>
+      </div>
+      <div class="redactor-section">
+        <div class="section-header">Изменение комнаты</div>
+        <div class="inputs-container">
+          <div class="section-input">
+            <div class="label">Комната</div>
+            <app-select
+              [options]="rooms"
+              [(selectedOption)]="roomForTime"
+              [placeholder]="'Выберите комнату'"
+              (selectedOptionChange)="getWorkHours()"
+            ></app-select>
+          </div>
+          <div class="section-input" *ngIf="roomForTime != undefined">
+            <div class="label">Начало работы</div>
+            <input
+              type="number"
+              maxlength="2"
+              [(ngModel)]="startTime"
+              [placeholder]="'Начало'"
+            />
+          </div>
+          <div class="section-input" *ngIf="roomForTime != undefined">
+            <div class="label">Конец работы</div>
+            <input
+              type="number"
+              maxlength="2"
+              [(ngModel)]="endTime"
+              [placeholder]="'Конец'"
+            />
+          </div>
+        </div>
+        <button
+          class="green-button"
+          [disabled]="!validateWorkHours()"
+          (click)="updateWorkHours()"
+        >
+          Сохранить
+        </button>
+      </div>
+      <div class="redactor-section">
+        <div class="section-header">Изменение опций комнаты</div>
+        <div class="inputs-container">
+          <div class="section-input">
+            <div class="label">Комната</div>
+            <app-select
+              [options]="rooms"
+              [placeholder]="'Выберите комнату'"
+              [(selectedOption)]="roomForOptions"
+              (selectedOptionChange)="selectRoomForOptions()"
+            ></app-select>
+          </div>
+          <div class="section-input" *ngIf="roomForOptions != undefined">
+            <div class="option" *ngFor="let option of roomOptions">
+              <div class="text">{{ option.name }}</div>
+              <img
+                src="assets/images/red-cross.svg"
+                alt=""
+                class="cross red-cross"
+                (click)="removeOption(option)"
+              />
+            </div>
+          </div>
+          <div class="section-input" *ngIf="roomForOptions != undefined">
+            <div class="label">Доступные опции</div>
+            <div class="option-selector">
+              <div class="selector-container">
+                <app-select
+                  [options]="availableOptions"
+                  [placeholder]="'Выберите опцию'"
+                  [(selectedOption)]="selectedOption"
+                ></app-select>
+              </div>
+              <img
+                *ngIf="selectedOption != undefined"
+                src="assets/images/green-cross.svg"
+                alt=""
+                class="cross green-cross"
+                (click)="addOption()"
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          class="green-button"
+          [disabled]="roomForOptions === undefined"
+          (click)="saveOptions()"
+        >
+          Сохранить
+        </button>
+      </div>
+      <div class="redactor-section">
+        <div class="green-button" (click)="initDB()">Инициализировать бд</div>
+      </div>
+      <div class="redactor-section">
+        <div class="green-button">Получить статистику</div>
+      </div>
+    </div>
+    <div class="reservations-container">
+      <app-reservation-viewer
+        [reservations]="reservations"
+        [isAdmin]="false"
+        (deleteReservaton)="deleteReservation($event)"
+      ></app-reservation-viewer>
+    </div>
+  </div>
+</div>

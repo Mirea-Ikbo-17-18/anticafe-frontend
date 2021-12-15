@@ -1,0 +1,163 @@
+@use "../../../styles";
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.header {
+  flex: 0 0 auto;
+  width: 100%;
+  padding: 3vmin 6vmin;
+  background: #c4c750;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 10vmin;
+  box-shadow: 0 0.23vmin 0.9vmin rgba(0, 0, 0, 0.2);
+}
+
+.header-option {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-bottom: 0.15vmin solid rgba(0, 0, 0, 0);
+}
+
+.header-option:hover {
+  border-bottom: 0.15vmin solid black;
+}
+
+.header-option:active {
+  opacity: 0.8;
+}
+
+.main-container {
+  position: relative;
+  opacity: 1;
+  flex: 8 1 auto;
+  width: 100%;
+  display: flex;
+  column-gap: 5vw;
+  padding: 2.87vh 7vw 5.74vh;
+  height: 90vmin;
+  box-sizing: border-box;
+}
+
+.redactor-container {
+  @extend %scrollable;
+  width: 47vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 3vmin;
+  flex: 1 1 auto;
+}
+
+.section-header {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5vmin;
+}
+
+.inputs-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1vmin;
+}
+
+.label {
+  font-size: 0.8rem;
+  line-height: 0.8rem;
+}
+
+input,
+select {
+  background: white;
+  border-radius: 1.5vmin;
+  border: 0.28vmin solid #000000;
+  box-sizing: border-box;
+  padding: 1vmin;
+  font-weight: 600;
+  font-size: 0.91rem;
+  line-height: 1.1rem;
+  width: 100%;
+}
+
+.green-button {
+  margin-top: 2vmin;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  width: 100%;
+  background: #c4c750;
+  font-weight: 600;
+  padding: 1.2vmin 2.96vmin;
+  display: flex;
+  border-radius: 1.2vmin;
+  font-size: 0.9rem;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+.green-button:not(:disabled):hover {
+  opacity: 0.9;
+}
+
+.green-button:not(:disabled):active {
+  opacity: 0.8;
+}
+
+.green-button:disabled {
+  background: #969696;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.reservations-container {
+  flex: 5 0 auto;
+  min-width: 60vw;
+}
+
+.option {
+  display: flex;
+  text {
+    font-size: 0.9rem;
+  }
+}
+
+.option-selector {
+  width: 100%;
+  display: flex;
+}
+
+.selector-container {
+  flex: 10 0 auto;
+}
+
+.cross {
+  cursor: pointer;
+  align-self: center;
+}
+
+.red-cross {
+  width: 3vmin;
+  height: 3vmin;
+  margin-left: auto;
+}
+
+.green-cross {
+  width: 2vmin;
+  height: 2vmin;
+  margin-left: 1vmin;
+  margin-right: 0.5vmin;
+}
