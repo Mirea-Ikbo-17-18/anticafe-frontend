@@ -17,7 +17,7 @@
       placeholder="Введите пароль"
       (ngModelChange)="removeError()"
     />
-    <button class="apply-button" (click)="logIn()">Войти</button>
+    <button class="green-button" (click)="logIn()">Войти</button>
     <div class="error-messge" *ngIf="user.invalidData">
       Не удалось авторизоваться
     </div>

@@ -29,6 +29,7 @@ import { ReservationViewerComponent } from './Components/reservation-viewer/rese
 import { ReservationRowComponent } from './Components/reservation-row/reservation-row.component';
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
+import { SelectComponent } from './Components/select/select.component';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -55,6 +56,7 @@ registerLocaleData(localeRu, 'ru');
     AdminLoginComponent,
     ReservationViewerComponent,
     ReservationRowComponent,
+    SelectComponent,
   ],
   imports: [
     BrowserModule,
