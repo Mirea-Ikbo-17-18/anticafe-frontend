@@ -13,6 +13,8 @@ import { MessageModal } from './message-modal.service';
   providedIn: 'root',
 })
 export class BookingModalService {
+  private startDate: Date = new Date();
+  private endDate: Date = new Date();
   public isVisible: boolean = false;
   public room: Room | undefined = undefined;
   public selectedOptions: Option[] = [];
@@ -41,6 +43,10 @@ export class BookingModalService {
   ) {}
 
   public open(room: Room): void {
+    this.startDate = new Date();
+    this.startDate.setHours(0, 0, 0);
+    this.endDate.setDate(this.startDate.getDate() + 14);
+    this.endDate.setHours(23, 59, 59);
     this.startTime = undefined;
     this.endTime = undefined;
     this.room = room;
@@ -92,9 +98,15 @@ export class BookingModalService {
 
   public changeDate(event: InputEvent | string): void {
     this.parsedDate = new Date(<string>event);
-    if (!(this.parsedDate.getTime() === this.parsedDate.getTime()))
+    if (
+      !(this.parsedDate.getTime() === this.parsedDate.getTime()) ||
+      this.parsedDate < this.startDate ||
+      this.parsedDate > this.endDate
+    )
       this.parsedDate = undefined;
     else {
+      this.startTime = undefined;
+      this.endTime = undefined;
       let date = new Date();
       if (
         this.parsedDate.getMonth() === date.getMonth() &&
@@ -133,7 +145,7 @@ export class BookingModalService {
           data.forEach((reservation: Reservation) => {
             let start: number = new Date(reservation.start).getHours();
             let end: number = new Date(reservation.finish).getHours();
-            for (let hour: number = start; hour <= end; hour++)
+            for (let hour: number = start; hour < end; hour++)
               this.occupiedTimes.push(hour);
           });
         });
@@ -158,7 +170,7 @@ export class BookingModalService {
             'yyyy-MM-ddTHH:00:00'
           ),
           finish: this.datePipe.transform(
-            new Date(date.setHours(this.endTime)),
+            new Date(date.setHours(this.endTime + 1, 59, 59)),
             'yyyy-MM-ddTHH:00:00'
           ),
           email: this.userInfo.email,
