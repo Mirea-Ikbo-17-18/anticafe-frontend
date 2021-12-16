@@ -3,6 +3,12 @@
   *ngIf="data.isVisible === true && data.room != undefined"
 >
   <div class="modal" [@slide]="data.animationState">
+    <img
+      src="assets/images/close-icon.svg"
+      alt=""
+      class="close-icon"
+      (click)="data.close()"
+    />
     <div class="header">Бронирование</div>
     <div class="header title">{{ data.room.name }}</div>
     <img
