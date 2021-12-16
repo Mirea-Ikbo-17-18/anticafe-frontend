@@ -29,6 +29,15 @@
   align-items: flex-start;
 }
 
+.close-icon {
+  cursor: pointer;
+  width: 2vh;
+  height: 2vh;
+  position: absolute;
+  right: 1vh;
+  top: 1vh;
+}
+
 .header {
   font-weight: 600;
   font-size: 1.1rem;

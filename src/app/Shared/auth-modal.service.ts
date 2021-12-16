@@ -23,15 +23,22 @@ export class AuthModalService {
   }
 
   public close(): void {
-    this.animating = true;
-    this.loginAnimationState = 'leave';
-    this.registryAnimationState = 'leave';
-    setTimeout(() => {
-      this.isVisible = false;
-      this.loginAnimationState = 'stay';
-      this.registryAnimationState = 'stay';
-      this.animating = false;
-    }, 350);
+    if (
+      this.loginAnimationState === 'stay' &&
+      this.registryAnimationState === 'stay'
+    ) {
+      this.animating = true;
+      this.loginAnimationState = 'leave';
+      this.registryAnimationState = 'leave';
+      setTimeout(() => {
+        this.isVisible = false;
+        this.loginVisible = true;
+        this.registryVisible = false;
+        this.loginAnimationState = 'stay';
+        this.registryAnimationState = 'stay';
+        this.animating = false;
+      }, 350);
+    }
   }
 
   public showLogin(): void {
@@ -40,6 +47,7 @@ export class AuthModalService {
     this.loginAnimationState = 'moveIn';
     setTimeout(() => {
       this.registryVisible = false;
+      this.loginAnimationState = 'stay';
       this.registryAnimationState = 'stay';
       this.animating = false;
     }, 350);
@@ -53,6 +61,7 @@ export class AuthModalService {
     setTimeout(() => {
       this.loginVisible = false;
       this.loginAnimationState = 'stay';
+      this.registryAnimationState = 'stay';
       this.animating = false;
     }, 350);
     this.loginAnimationState = 'moveOut';
