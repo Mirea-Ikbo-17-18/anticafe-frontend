@@ -77,11 +77,13 @@ export class BookingModalService {
   }
 
   public close(): void {
-    this.animationState = 'leave';
-    setTimeout(() => {
-      this.animationState = 'stay';
-      this.isVisible = false;
-    }, 350);
+    if (this.animationState === 'stay') {
+      this.animationState = 'leave';
+      setTimeout(() => {
+        this.animationState = 'stay';
+        this.isVisible = false;
+      }, 350);
+    }
   }
 
   public recalculateCost(): void {
