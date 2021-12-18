@@ -170,7 +170,7 @@ export class AdminService {
 
   public updateRoom(room: ShortRoom, roomId: number): void {
     this.httpClient
-      .patch(environment.apiUrl + '/rooms/' + roomId.toString(), room, {
+      .patch(environment.apiUrl + '/rooms/' + roomId.toString() + '/', room, {
         headers: this.getTokenHeader(),
       })
       .subscribe();
