@@ -32,11 +32,13 @@ export class ChangeProfileModalService {
   }
 
   public close(): void {
-    this.animationState = 'leave';
-    setTimeout(() => {
-      this.animationState = 'stay';
-      this.isVisible = false;
-    }, 350);
+    if (this.animationState === 'stay') {
+      this.animationState = 'leave';
+      setTimeout(() => {
+        this.animationState = 'stay';
+        this.isVisible = false;
+      }, 350);
+    }
   }
 
   public save(): void {

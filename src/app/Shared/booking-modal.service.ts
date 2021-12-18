@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Option } from '../Interfaces/option';
@@ -172,7 +172,7 @@ export class BookingModalService {
             'yyyy-MM-ddTHH:00:00'
           ),
           finish: this.datePipe.transform(
-            new Date(date.setHours(this.endTime + 1, 59, 59)),
+            new Date(date.setHours(this.endTime + 1)),
             'yyyy-MM-ddTHH:00:00'
           ),
           email: this.userInfo.email,
@@ -184,7 +184,11 @@ export class BookingModalService {
           return option.id;
         }),
       };
-      if (this.user.isAuthorized.value === true) {
+      if (
+        this.user.isAuthorized.value === true &&
+        this.user.token != undefined
+      ) {
+        let header = new HttpHeaders().set('token', this.user.token);
         this.http
           .post(
             environment.apiUrl +
@@ -192,7 +196,7 @@ export class BookingModalService {
               this.room.id.toString() +
               '/reservations/',
             body,
-            { headers: this.user.getTokenHeader() }
+            { headers: header }
           )
           .toPromise()
           .then(() => {
